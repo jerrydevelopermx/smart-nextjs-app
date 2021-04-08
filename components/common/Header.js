@@ -469,7 +469,7 @@ function Header(props) {
                   return (
                     <div key={item.type}>
                       <img
-                        src={`${process.env.PUBLIC_URL}/imgs/${props.logo}`}
+                        src={`/imgs/${props.logo}`}
                         className={classes.logo}
                         alt=""
                       />

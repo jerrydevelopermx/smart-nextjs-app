@@ -20,11 +20,11 @@ function BackHome(props) {
 
   return (
     <div className={classes.backDiv + "  " + classes.left}>
-      <Link to="/" href="/">
+      <Link href="/store/[id]" as={`/store/home`}>
         <Tooltip title="Go to Smart Shop" aria-label="Go SmartShop">
           <img
             className={classes.backImg}
-            src={`${process.env.PUBLIC_URL}/imgs/bevariante1.png`}
+            src={`/imgs/bevariante1.png`}
             alt="Go to Smart Shop"
           />
         </Tooltip>

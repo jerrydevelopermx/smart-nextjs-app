@@ -61,7 +61,7 @@ function ItemsGrid(props) {
         <Grid item key={item.id} xs={12} sm={6} md={4}>
           <Card>
             {item.type === "store" ? (
-              <Link to={"/store/" + item.id} href="">
+              <Link href="/store/[id]" as={`/store/${item.id}`}>
                 <div
                   onMouseOver={() => toggleHover(index, true)}
                   onMouseOut={() => toggleHover(index, false)}
@@ -78,7 +78,7 @@ function ItemsGrid(props) {
                 >
                   <CardMedia
                     style={props.appStyles.grid.cardMedia}
-                    image={`${process.env.PUBLIC_URL}/imgs/${item.coverimage}`}
+                    image={`/imgs/${item.coverimage}`}
                     title={item.name}
                   />
                   <div
@@ -99,7 +99,7 @@ function ItemsGrid(props) {
                       <div>
                         <img
                           style={{ maxHeight: "120px" }}
-                          src={`${process.env.PUBLIC_URL}/imgs/${item.hoverimage}`}
+                          src={`/imgs/${item.hoverimage}`}
                           alt=""
                         />
                       </div>
@@ -120,7 +120,7 @@ function ItemsGrid(props) {
               >
                 <CardMedia
                   style={props.appStyles.grid.cardMedia}
-                  image={`${process.env.PUBLIC_URL}/imgs/${item.coverimage}`}
+                  image={`/imgs/${item.coverimage}`}
                   title={item.name}
                 />
                 <div

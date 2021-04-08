@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import Container from "@material-ui/core/Container";
 import client from "../../apollo-client";
@@ -5,7 +6,12 @@ import queries from "../../graphql/queries";
 import Header from "../../components/common/Header";
 import Footer from "../../components/common/Footer";
 import Slider from "../../components/common/Slider";
+import SearchFilter from "../../components/common/SearchFilter";
+
 import VideoGallery from "../../components/common/VideoGallery";
+import ItemsGrid from "../../components/common/ItemsGrid";
+import BackToTop from "../../components/common/BackToTop";
+
 import appStyles from "../../styles/app.js";
 import js from "../../js/components.js";
 
@@ -14,7 +20,6 @@ export async function getServerSideProps(context) {
     query: queries.GET_HOME_PAGE_INFO,
     variables: { storeId: context.query.id === "home" ? 0 : context.query.id },
   });
-
   return {
     props: {
       data: data,
@@ -24,8 +29,53 @@ export async function getServerSideProps(context) {
 
 function StorePage(props) {
   console.log(props);
+  let gridItems = [];
+  const [pageId, setPageId] = useState(0);
+  const [filters, setFilters] = useState([]);
+  const [categoryFilteredItems, setCategoryFilteredItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState(null);
+  const [filtersApplied, setFiltersApplied] = useState([]);
+  const [linkTop, settLinkTop] = useState("none");
   const router = useRouter();
   const { id } = router.query;
+
+  useEffect(() => {
+    //const id = props.match.params.id ? props.match.params.id : 0;
+    const { id } = router.query;
+    setPageId(id);
+    setFilteredItems(null);
+    setFilters([]);
+    window.onscroll = () => {
+      settLinkTop(window.pageYOffset > 250 ? "block" : "none");
+    };
+  }, [id]);
+  function categoryChangeHandler({ target }) {
+    gridItems = props.data.storeGrid.filter(
+      (store) => store.categoryId === target.value
+    );
+    let category = props.data.page.categories.find(
+      (category) => category.id === target.value
+    );
+    setCategoryFilteredItems(gridItems);
+    setFilteredItems(gridItems);
+    console.log(category.filters);
+    setFilters(category.filters);
+  }
+
+  function filterChangeHandler(type, value) {
+    console.log(type, value);
+    let filtered = categoryFilteredItems.filter((element) => {
+      //console.log(filtersApplied);
+      if (filtersApplied.length === 0) {
+        console.log("solo un filtro");
+      } else {
+        console.log("mas de un filtro");
+      }
+      return element[type.toLowerCase()] === value;
+    });
+    setFiltersApplied([{ type, value }, ...filtersApplied]);
+    setFilteredItems(filtered);
+  }
 
   return (
     <div
@@ -35,6 +85,10 @@ function StorePage(props) {
         color: props.data.page.styles.body.color,
       }}
     >
+      <BackToTop
+        backgroundColor={props.data.page.styles.header.topbar.background}
+        display={linkTop}
+      />
       <Header
         logo={props.data.page.logo}
         blogLink={props.data.page.bloglink}
@@ -57,7 +111,21 @@ function StorePage(props) {
           appStyles={appStyles.slider}
         />
         <Container style={appStyles.container} maxWidth={false}>
-          CONTENT
+          <SearchFilter
+            onCategoryChange={categoryChangeHandler}
+            onFilterChange={filterChangeHandler}
+            categories={props.data.page.categories}
+            filters={filters}
+            appStyles={appStyles.searchFilter}
+          />
+          <ItemsGrid
+            items={
+              filteredItems !== null ? filteredItems : props.data.storeGrid
+            }
+            pageId={props.data.page.id}
+            appStyles={appStyles}
+            modalStyles={props.data.page.styles.modalstyles}
+          />
           <VideoGallery
             //inputRef={videoRef}
             video={props.data.page.video}
