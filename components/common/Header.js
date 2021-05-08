@@ -17,8 +17,10 @@ import queries from "../../graphql/queries.js";
 import appFunctions from "../../js/functions";
 import "../../styles/app";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 
 function Header(props) {
+  const { t } = useTranslation("common");
   console.log(props);
   let history = useHistory();
   let user = undefined; //JSON.parse(localStorage.getItem("user"));
@@ -40,7 +42,6 @@ function Header(props) {
   const [getContent, { data }] = useLazyQuery(
     queries.GET_HTML_CONTENT_BY_ID_SECTION
   );
-
   const useStyles = makeStyles((theme) => ({
     header: {
       [theme.breakpoints.only("xs")]: {
@@ -173,13 +174,22 @@ function Header(props) {
   const StyledMenuItem = withStyles(styledMenuItem)(MenuItem);
 
   function getMenuLinks(item) {
+    let link = "";
+    let pId = props.pageId;
     if (item.label === "Blog") {
-      return props.blogLink !== "" ? props.blogLink : "";
+      link =
+        props.blogLink !== ""
+          ? "/" + (props.pageId == 0 ? "main" : props.pageId) + props.blogLink
+          : "";
     } else {
-      return props.pageId !== 0
-        ? "/store/" + props.pageId + item.url
-        : item.url;
+      link =
+        props.pageId !== 0
+          ? "/" + (props.pageId == 0 ? "main" : props.pageId) + item.url
+          : item.url;
     }
+    console.log(props.blogLink);
+    console.log(link);
+    return link;
   }
   const handleClick = (event) => {
     event.preventDefault();
@@ -189,6 +199,7 @@ function Header(props) {
     setAnchorEl(null);
   };
   const handleSubMenuClick = (action) => {
+    console.log("no mms");
     getContent({
       variables: {
         id: props.pageId,
@@ -337,7 +348,7 @@ function Header(props) {
                                 onClick={handleToggle}
                               >
                                 <img
-                                  src={`${process.env.PUBLIC_URL}/imgs/Bart_Simpson.png`}
+                                  src={`/imgs/Bart_Simpson.png`}
                                   style={{
                                     height: "60px",
                                     position: "absolute",
@@ -400,22 +411,32 @@ function Header(props) {
                             </>
                           ) : (
                             <Link
-                              href=""
-                              className={classes.headerMenu}
-                              style={props.styles.headermenu}
-                              to={getMenuLinks(item)}
-                              onClick={(e) =>
-                                item.label !== "Blog" && item.action
-                                  ? item.action !== "events"
-                                    ? item.action === "contactUs"
-                                      ? handleSubMenuClick(item.action)
-                                      : menuClickHandler(item.action, e)
-                                    : menuClickScroll(item.action, e)
-                                  : null
+                              href={
+                                item.label === "Home" ||
+                                item.label === "Contact Us"
+                                  ? "/[id]"
+                                  : item.label === "Blog"
+                                  ? "/[id]/blog"
+                                  : "/[id]/[section]"
                               }
-                              exact
+                              as={getMenuLinks(item)}
                             >
-                              {item.label}
+                              <a
+                                className={classes.headerMenu}
+                                style={props.styles.headermenu}
+                                onClick={(e) =>
+                                  item.label !== "Blog" && item.action
+                                    ? item.action !== "events"
+                                      ? item.action === "contactUs"
+                                        ? handleSubMenuClick(item.action)
+                                        : menuClickHandler(item.action, e)
+                                      : menuClickScroll(item.action, e)
+                                    : null
+                                }
+                                exact
+                              >
+                                {item.label} {t("home")}
+                              </a>
                             </Link>
                           )}
                         </>
@@ -425,16 +446,16 @@ function Header(props) {
                 case "submenu":
                   return (
                     <Hidden key={item.label} only={["xs"]}>
-                      <Link
-                        id={item.id}
-                        onClick={handleClick}
-                        className={classes.headerMenu}
-                        style={props.styles.headermenu}
-                        exact
-                        to=""
-                        href=""
-                      >
-                        {item.label}
+                      <Link href="">
+                        <a
+                          id={item.id}
+                          onClick={handleClick}
+                          className={classes.headerMenu}
+                          style={props.styles.headermenu}
+                          exact
+                        >
+                          {item.label}
+                        </a>
                       </Link>
 
                       <StyledMenu

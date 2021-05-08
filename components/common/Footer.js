@@ -67,14 +67,17 @@ function Footer(props) {
                     <ul className={classes.footerUlList}>
                       {column.options.map((option, index) => (
                         <li key={"footOpt" + index}>
-                          <Link
-                            href=""
-                            style={props.styles.footerlinks}
-                            className={classes.footerLinks}
-                            to=""
-                            onClick={(e) => menuClickHandler(option.action, e)}
-                          >
-                            {option.text}
+                          <Link href="">
+                            <a
+                              style={props.styles.footerlinks}
+                              className={classes.footerLinks}
+                              to=""
+                              onClick={(e) =>
+                                menuClickHandler(option.action, e)
+                              }
+                            >
+                              {option.text}
+                            </a>
                           </Link>
                         </li>
                       ))}

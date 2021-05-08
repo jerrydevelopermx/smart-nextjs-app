@@ -1,20 +1,23 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import Container from "@material-ui/core/Container";
-import client from "../../apollo-client";
-import queries from "../../graphql/queries";
-import Header from "../../components/common/Header";
-import Footer from "../../components/common/Footer";
-import Slider from "../../components/common/Slider";
-import SearchFilter from "../../components/common/SearchFilter";
-import { initializeApollo } from "../../lib/apolloClient";
+import client from "../apollo-client";
+import queries from "../graphql/queries";
+import Header from "../components/common/Header";
+import Footer from "../components/common/Footer";
+import Slider from "../components/common/Slider";
+import SearchFilter from "../components/common/SearchFilter";
+import { initializeApollo } from "../lib/apolloClient";
 
-import VideoGallery from "../../components/common/VideoGallery";
-import ItemsGrid from "../../components/common/ItemsGrid";
-import BackToTop from "../../components/common/BackToTop";
+import VideoGallery from "../components/common/VideoGallery";
+import ItemsGrid from "../components/common/ItemsGrid";
+import BackToTop from "../components/common/BackToTop";
 
-import appStyles from "../../styles/app.js";
-import js from "../../js/components.js";
+import appStyles from "../styles/app.js";
+import js from "../js/components.js";
+
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { i18n } from "next-i18next";
 
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo();
@@ -22,16 +25,16 @@ export async function getServerSideProps(context) {
     query: queries.GET_HOME_PAGE_INFO,
     variables: { storeId: context.query.id === "main" ? 0 : context.query.id },
   });
+
   return {
     props: {
       data: data,
+      ...(await serverSideTranslations(data.page.lang, ["common"])),
     },
   };
 }
 
 function StorePage({ ...props }) {
-  console.log(props);
-
   let gridItems = [];
   const [pageId, setPageId] = useState(0);
   const [filters, setFilters] = useState([]);

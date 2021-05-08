@@ -34,6 +34,7 @@ const styles = {
         borderBottomRightRadius: "25%",
         textAlign: "center",
         boxShadow: "-4px 4px 8px #A9A9A9",
+        cursor: "pointer",
       },
       img: { height: "30px", marginTop: "3px" },
     },

@@ -32,7 +32,6 @@ function Copyright() {
   );
 }
 function LoginForm(props) {
-  let { id } = useParams();
   let history = useHistory();
   let loginForm = {
     email: "",

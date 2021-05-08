@@ -61,7 +61,7 @@ function ItemsGrid(props) {
         <Grid item key={item.id} xs={12} sm={6} md={4}>
           <Card>
             {item.type === "store" ? (
-              <Link href="/store/[id]" as={`/store/${item.id}`}>
+              <Link href="/[id]" as={`/${item.id}`}>
                 <div
                   onMouseOver={() => toggleHover(index, true)}
                   onMouseOut={() => toggleHover(index, false)}

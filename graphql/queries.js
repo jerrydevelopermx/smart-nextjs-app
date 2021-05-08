@@ -12,6 +12,7 @@ const queries = {
         id
         name
         logo
+        lang
         description
         bloglink
         slides {
@@ -119,6 +120,7 @@ const queries = {
         id
         name
         logo
+        lang
         description
         bloglink
 
@@ -195,6 +197,7 @@ const queries = {
         id
         name
         logo
+        lang
         description
         bloglink
 
@@ -795,6 +798,7 @@ const queries = {
         id
         name
         logo
+        lang
         description
         bloglink
 
@@ -939,6 +943,7 @@ const queries = {
         id
         name
         logo
+        lang
         description
         bloglink
 
@@ -1019,6 +1024,7 @@ const queries = {
         id
         name
         logo
+        lang
         description
         bloglink
 
