@@ -3,8 +3,10 @@ import { Carousel } from "react-responsive-carousel";
 import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { useTranslation } from "next-i18next";
 
 function Slider(props) {
+  const { t } = useTranslation("common");
   const useStyles = makeStyles((theme) => ({
     margin: {
       [theme.breakpoints.only("xs")]: {
@@ -41,9 +43,7 @@ function Slider(props) {
       className={props.type === "topSlider" ? classes.margin : classes.align}
       style={props.styles}
     >
-      {props.id === "events-scroll" ? (
-        <h4>Hot Sales, Promos and Events</h4>
-      ) : null}
+      {props.id === "events-scroll" ? <h4>{t("Promos and Events")}</h4> : null}
       <Carousel
         showArrows={true}
         showThumbs={false}

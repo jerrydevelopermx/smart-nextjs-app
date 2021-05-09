@@ -16,9 +16,9 @@ const components = {
         { text: "Our Mission", action: "ourMission" },
         { text: "Who We Are", action: "whoWeAre" },
         { text: "Our Board & Staff", action: "board" },
-        { text: "Site's Features", action: "features" },
+        { text: "Sites Features", action: "features" },
         {
-          text: "Site's Membership",
+          text: "Sites Membership",
           action: "membership",
         },
         { text: "Events", action: "events" },

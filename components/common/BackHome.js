@@ -2,8 +2,10 @@ import React from "react";
 import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
+import { useTranslation } from "next-i18next";
 
 function BackHome(props) {
+  const { t } = useTranslation("header");
   const useStyles = makeStyles((theme) => ({
     backDiv: props.appStyles.backHome.div,
     left: {
@@ -21,11 +23,11 @@ function BackHome(props) {
   return (
     <div className={classes.backDiv + "  " + classes.left}>
       <Link href="/[id]" as={`/main`}>
-        <Tooltip title="Go to Smart Shop" aria-label="Go SmartShop">
+        <Tooltip title={t("Go to Smart Shop")} aria-label="Go SmartShop">
           <img
             className={classes.backImg}
             src={`/imgs/bevariante1.png`}
-            alt="Go to Smart Shop"
+            alt={t("Go to Smart Shop")}
           />
         </Tooltip>
       </Link>

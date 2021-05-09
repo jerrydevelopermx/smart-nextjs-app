@@ -7,9 +7,10 @@ import ModalContent from "./ModalContent";
 import { useLazyQuery } from "@apollo/client";
 import queries from "../../graphql/queries.js";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 
 function Footer(props) {
-  console.log(props);
+  const { t } = useTranslation("footer");
   const useStyles = makeStyles((theme) => props.appStyles);
   const classes = useStyles();
   const [getContent, { data }] = useLazyQuery(
@@ -56,7 +57,7 @@ function Footer(props) {
           props.content.columns.map((column, index) => (
             <Grid item key={column.id} xs={6} sm={6} md={3}>
               <div className={classes.centeredContent}>
-                {column.title}
+                {t(column.title)}
                 <div>
                   <div
                     style={{
@@ -76,7 +77,7 @@ function Footer(props) {
                                 menuClickHandler(option.action, e)
                               }
                             >
-                              {option.text}
+                              {t(option.text)}
                             </a>
                           </Link>
                         </li>

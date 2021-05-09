@@ -29,7 +29,11 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: data,
-      ...(await serverSideTranslations(data.page.lang, ["common"])),
+      ...(await serverSideTranslations(data.page.lang, [
+        "common",
+        "header",
+        "footer",
+      ])),
     },
   };
 }

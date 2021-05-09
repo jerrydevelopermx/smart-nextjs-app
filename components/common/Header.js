@@ -20,8 +20,7 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 
 function Header(props) {
-  const { t } = useTranslation("common");
-  console.log(props);
+  const { t } = useTranslation("header");
   let history = useHistory();
   let user = undefined; //JSON.parse(localStorage.getItem("user"));
 
@@ -380,31 +379,31 @@ function Header(props) {
                                 <StyledMenuItem onClick={goToAdmin}>
                                   <ListItemText
                                     className={classes.listItem}
-                                    primary={"Admin"}
+                                    primary={t("Admin")}
                                   />
                                 </StyledMenuItem>
                                 <StyledMenuItem>
                                   <ListItemText
                                     className={classes.listItem}
-                                    primary={"My Profile"}
+                                    primary={t("My Profile")}
                                   />
                                 </StyledMenuItem>
                                 <StyledMenuItem>
                                   <ListItemText
                                     className={classes.listItem}
-                                    primary={"My Pending Tasks"}
+                                    primary={t("My Pending Tasks")}
                                   />
                                 </StyledMenuItem>
                                 <StyledMenuItem>
                                   <ListItemText
                                     className={classes.listItem}
-                                    primary={"My Completed Tasks"}
+                                    primary={t("My Completed Tasks")}
                                   />
                                 </StyledMenuItem>
                                 <StyledMenuItem onClick={handleLogout}>
                                   <ListItemText
                                     className={classes.listItem}
-                                    primary={"Logout"}
+                                    primary={t("Logout")}
                                   />
                                 </StyledMenuItem>
                               </StyledlLoggedMenu>
@@ -435,7 +434,7 @@ function Header(props) {
                                 }
                                 exact
                               >
-                                {item.label} {t("home")}
+                                {t(item.label)}
                               </a>
                             </Link>
                           )}
@@ -454,7 +453,7 @@ function Header(props) {
                           style={props.styles.headermenu}
                           exact
                         >
-                          {item.label}
+                          {t(item.label)}
                         </a>
                       </Link>
 
@@ -478,7 +477,7 @@ function Header(props) {
                           >
                             <ListItemText
                               className={classes.listItem}
-                              primary={submenu.text}
+                              primary={t(submenu.text)}
                             />
                           </StyledMenuItem>
                         ))}
