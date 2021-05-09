@@ -408,6 +408,8 @@ function Header(props) {
                                   ? "/[id]"
                                   : item.label === "Blog"
                                   ? "/[id]/blog"
+                                  : item.label === "Login"
+                                  ? "/[id]/access/[section]"
                                   : "/[id]/[section]"
                               }
                               as={getMenuLinks(item)}

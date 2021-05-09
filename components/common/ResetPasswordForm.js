@@ -126,9 +126,11 @@ function ResetPasswordForm(props) {
           <Grid container>
             <Grid item xs>
               <Link
-                href="/[id]/[section]"
+                href="/[id]/access/[section]"
                 as={
-                  "/" + (props.pageId == 0 ? "main" : props.pageId) + "/login"
+                  "/" +
+                  (props.pageId == 0 ? "main" : props.pageId) +
+                  "/access/login"
                 }
               >
                 <a className={classes.links} variant="body2">

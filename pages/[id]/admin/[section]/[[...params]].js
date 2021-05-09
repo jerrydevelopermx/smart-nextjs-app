@@ -1,15 +1,17 @@
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { initializeApollo } from "../../../lib/apolloClient";
-import queries from "../../../graphql/queries";
+import { initializeApollo } from "../../../../lib/apolloClient";
+import queries from "../../../../graphql/queries";
 
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
-import LeftNavBar from "../../../components/admin/LeftNavBar";
-import Header from "../../../components/common/Header";
-import Footer from "../../../components/common/Footer";
-import appStyles from "../../../styles/app.js";
-import js from "../../../js/components.js";
+import LeftNavBar from "../../../../components/admin/LeftNavBar";
+import Header from "../../../../components/common/Header";
+import Footer from "../../../../components/common/Footer";
+import ContentManager from "../../../../components/admin/ContenManager";
+import Campaigns from "../../../../components/admin/Campaigns";
+import appStyles from "../../../../styles/app.js";
+import js from "../../../../js/components.js";
 
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo();
@@ -33,7 +35,7 @@ function AdminHomePage({ ...props }) {
   //let user = JSON.parse(localStorage.getItem("user"));
   const router = useRouter();
   console.log(router.query);
-  const { id } = router.query;
+  const { id, section } = router.query;
 
   return (
     <div
@@ -77,7 +79,34 @@ function AdminHomePage({ ...props }) {
               />
             </Hidden>
           </Grid>
-          <Grid item xs={12} sm={2} md={10}></Grid>
+          <Grid item xs={12} sm={2} md={10}>
+            {
+              {
+                home: (
+                  <div>
+                    <h1>Welcome to SmartShop Admin Page!</h1>
+                  </div>
+                ),
+                cms: (
+                  <ContentManager
+                    action={"edit"}
+                    styles={props.data.page.styles.header}
+                    pageId={props.data.page.id}
+                    appButtons={appStyles.buttons}
+                    appStyles={appStyles}
+                  />
+                ),
+                campaigns: (
+                  <Campaigns
+                    action={"edit"}
+                    buttons={appStyles.buttons}
+                    styles={props.ata.page.styles.header}
+                    pageId={props.data.page.id}
+                  />
+                ),
+              }[section]
+            }
+          </Grid>
         </Grid>
       </main>
       <Footer

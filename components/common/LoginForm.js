@@ -8,12 +8,10 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { NavHashLink as NavLink } from "react-router-hash-link";
 import appFunctions from "../../js/functions";
 import { withStyles } from "@material-ui/core/styles";
 import { useMutation } from "@apollo/client";
@@ -104,7 +102,7 @@ function LoginForm(props) {
   function handleLoginResponse(response) {
     if (response.data.login.userName !== null) {
       localStorage.setItem("user", JSON.stringify(response.data.login));
-      router.push("/[id]/admin", "/" + id + "/admin");
+      router.push("/[id]/admin/[params]", "/" + id + "/admin/home");
     } else {
       setLoginError("Login failed, try again.");
     }
@@ -200,11 +198,11 @@ function LoginForm(props) {
           <Grid container>
             <Grid item xs>
               <Link
-                href="/[id]/[section]"
+                href="/[id]/access/[section]"
                 as={
                   "/" +
                   (props.pageId == 0 ? "main" : props.pageId) +
-                  "/resetpassword"
+                  "/access/resetpassword"
                 }
               >
                 <a className={classes.links} variant="body2">
@@ -214,11 +212,11 @@ function LoginForm(props) {
             </Grid>
             <Grid item>
               <Link
-                href="/[id]/[section]"
+                href="/[id]/access/[section]"
                 as={
                   "/" +
                   (props.pageId == 0 ? "main" : props.pageId) +
-                  "/register"
+                  "/access/register"
                 }
               >
                 <a className={classes.links} variant="body2">

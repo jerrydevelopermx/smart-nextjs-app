@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
-import Header from "../../components/common/Header";
-import Footer from "../../components/common/Footer";
+import Header from "../../../components/common/Header";
+import Footer from "../../../components/common/Footer";
 import { useQuery } from "@apollo/client";
-import appStyles from "../../styles/app.js";
-import queries from "../../graphql/queries.js";
-import js from "../../js/components.js";
-import LoginForm from "../../components/common/LoginForm";
-import RegisterForm from "../../components/common/RegisterForm";
-import ResetPasswordForm from "../../components/common/ResetPasswordForm";
-import { initializeApollo } from "../../lib/apolloClient";
+import appStyles from "../../../styles/app.js";
+import queries from "../../../graphql/queries.js";
+import js from "../../../js/components.js";
+import LoginForm from "../../../components/common/LoginForm";
+import RegisterForm from "../../../components/common/RegisterForm";
+import ResetPasswordForm from "../../../components/common/ResetPasswordForm";
+import { initializeApollo } from "../../../lib/apolloClient";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export async function getServerSideProps(context) {

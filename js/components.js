@@ -56,7 +56,7 @@ const components = {
     {
       type: "link",
       label: "Login",
-      url: "/login",
+      url: "/access/login",
       action: "",
       items: null,
     },

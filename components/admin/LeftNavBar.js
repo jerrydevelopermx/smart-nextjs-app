@@ -80,12 +80,8 @@ function LeftNavBar(props) {
           <Collapse in={open.site} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <Link
-                href="/[id]/[section]"
-                as={
-                  props.pageId !== "0"
-                    ? `/store/${props.pageId}/admin/cms`
-                    : `/admin/cms`
-                }
+                href={`/[id]/admin/[section]/[params]`}
+                as={`/${props.pageId == 0 ? "main" : props.pageId}/admin/cms`}
               >
                 <ListItem button className={classes.nested} component="a">
                   <ListItemIcon className={classes.icon}>
@@ -98,12 +94,10 @@ function LeftNavBar(props) {
                 </ListItem>
               </Link>
               <Link
-                href="/[id]/[section]"
-                as={
-                  props.pageId !== "0"
-                    ? `/store/${props.pageId}/admin/campaigns`
-                    : `/admin/campaigns`
-                }
+                href={`/[id]/admin/[section]/[params]`}
+                as={`/${
+                  props.pageId == 0 ? "main" : props.pageId
+                }/admin/campaigns`}
               >
                 <ListItem button className={classes.nested} component="a">
                   <ListItemIcon className={classes.icon}>
@@ -126,7 +120,12 @@ function LeftNavBar(props) {
                 />
               </ListItem>
 
-              <Link href="/[id]/[section]" as={`/admin/incidents`}>
+              <Link
+                href={`/[id]/admin/[section]/[params]`}
+                as={`/${
+                  props.pageId == 0 ? "main" : props.pageId
+                }/admin/incidents`}
+              >
                 <ListItem
                   button
                   className={classes.nested}
