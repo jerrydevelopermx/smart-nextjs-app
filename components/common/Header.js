@@ -18,10 +18,11 @@ import appFunctions from "../../js/functions";
 import "../../styles/app";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 function Header(props) {
+  const router = useRouter();
   const { t } = useTranslation("header");
-  let history = useHistory();
   let user = undefined; //JSON.parse(localStorage.getItem("user"));
 
   const [open, setOpen] = useState(false);
@@ -186,8 +187,6 @@ function Header(props) {
           ? "/" + (props.pageId == 0 ? "main" : props.pageId) + item.url
           : item.url;
     }
-    console.log(props.blogLink);
-    console.log(link);
     return link;
   }
   const handleClick = (event) => {
@@ -198,7 +197,6 @@ function Header(props) {
     setAnchorEl(null);
   };
   const handleSubMenuClick = (action) => {
-    console.log("no mms");
     getContent({
       variables: {
         id: props.pageId,
@@ -209,7 +207,6 @@ function Header(props) {
     setModalStatus({ ...modalStatus, ...{ open: true, sectionId: action } });
   };
   const mobileMenuClickHandler = (action) => {
-    console.log(action);
     if (action !== "" && action !== null) {
       getContent({
         variables: {
@@ -263,12 +260,7 @@ function Header(props) {
   };
 
   const handleLogout = (event) => {
-    history.push(
-      (props.pageId !== undefined && props.pageId !== "0"
-        ? "/store/" + props.pageId
-        : "") + "/login"
-    );
-
+    router.push("/[id]/[section]", "/" + props.pageId + "/login");
     localStorage.clear();
     setLoggedMenuEl(null);
   };

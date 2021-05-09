@@ -1,3 +1,16 @@
 {	
-    "Take a Tour": "Take a Tour!"
+    "Take a Tour": "Take a Tour!",
+    "Promos and Events" : "Hot Sales, Promos and Events",
+    "Categories": "Categories",
+    "Log in" : "Log in",
+    "Email Address": "Email Address",
+    "Password": "Password",
+    "Remember me": "Remember me",
+    "Submit": "Submit",
+    "Forgot password": "Forgot password?",
+    "Not a member": "Not a member? Join Now!",
+    "Reset Password": "Reset Password",
+    "ResetInstructions" : "Type in your email address, we will send you directions on how to reset your password",
+    "Back to Login" : "Back to Login",
+    "Go to" : "Go to "
 }

@@ -1,0 +1,15 @@
+{
+    "Site": "Sitio",
+    "Department": "Departmento",
+    "Users" : "Usuarios",
+    "Content Management" : "Administrador de Contenido",
+    "Creation and Maintenance" : "Creación y Mantenimiento",
+    "Queries and Lists": "Consultas y Listas",
+    "Activity tracker": "Monitor de Actividad",
+    "Reports" : "Reportes",
+    "Campaign Manager": "Administrador de Campañas",
+    "Inventory Management": "Administración de Inventario",
+    "Orders Management": "Administración de Órdenes",
+    "Payments Management": "Administración de Pagos",
+    "Analytics": "Analíticas"
+}

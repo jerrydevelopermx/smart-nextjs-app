@@ -6,8 +6,10 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
+import { useTranslation } from "next-i18next";
 
 function SearchFilter(props) {
+  const { t } = useTranslation("common");
   const useStyles = makeStyles((theme) => props.appStyles);
   const classes = useStyles();
   return (
@@ -15,12 +17,12 @@ function SearchFilter(props) {
       <Container className={classes.container} maxWidth={false}>
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="demo-simple-select-outlined-label">
-            Categories
+            {t("Categories")}
           </InputLabel>
           <Select
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
-            label="Categories"
+            label={t("Categories")}
             onChange={props.onCategoryChange}
           >
             {props.categories &&

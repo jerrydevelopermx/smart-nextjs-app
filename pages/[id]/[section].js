@@ -9,6 +9,7 @@ import LoginForm from "../../components/common/LoginForm";
 import RegisterForm from "../../components/common/RegisterForm";
 import ResetPasswordForm from "../../components/common/ResetPasswordForm";
 import { initializeApollo } from "../../lib/apolloClient";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo();
@@ -22,6 +23,11 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: data,
+      ...(await serverSideTranslations(data.page.lang, [
+        "common",
+        "header",
+        "footer",
+      ])),
     },
   };
 }
@@ -62,7 +68,6 @@ function CredentialsPage(props) {
             pageId={props.data.page.id}
           />
         )}
-        {section}
       </main>
       <Footer
         appStyles={appStyles.footer}

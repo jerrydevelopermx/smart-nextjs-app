@@ -1,4 +1,16 @@
 {	
     "Take a Tour": "¡Da un paseo!",
-    "Promos and Events" : "Ofertas, Promociones y Eventos"
+    "Promos and Events" : "Ofertas, Promociones y Eventos",
+    "Categories": "Categorías",
+    "Log in" : "Iniciar Sesión",
+    "Email Address": "Correo electrónico",
+    "Password": "Contraseña",
+    "Remember me": "Recuérdame",
+    "Submit": "Enviar",
+    "Forgot password": "¿Olvidaste tu contraseña?",
+    "Not a member": "¿No eres miembro? ¡Únete ahora!",
+    "Reset Password": "Restablecer Contraseña",
+    "ResetInstructions": "Escriba su dirección de correo electrónico, le enviaremos instrucciones sobre cómo restablecer su contraseña",
+    "Back to Login" : "Volver a Inicio de Sesión",
+    "Go to" : "Ir a "
 }

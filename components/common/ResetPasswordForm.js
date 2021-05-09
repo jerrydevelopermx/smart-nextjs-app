@@ -5,7 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -15,20 +15,10 @@ import Container from "@material-ui/core/Container";
 import { NavHashLink as NavLink } from "react-router-hash-link";
 import appFunctions from "../../js/functions";
 import { withStyles } from "@material-ui/core/styles";
+import { useTranslation } from "next-i18next";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 function ResetPasswordForm(props) {
+  const { t } = useTranslation("common");
   const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(8),
@@ -106,7 +96,7 @@ function ResetPasswordForm(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Reset Password
+          {t("Reset Password")}
         </Typography>
         <form className={classes.form} noValidate>
           <CssTextField
@@ -115,15 +105,12 @@ function ResetPasswordForm(props) {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label={t("Email Address")}
             name="email"
             autoComplete="email"
             autoFocus
           />
-          <div>
-            Type in your email address, we will send you directions on how to
-            reset your password
-          </div>
+          <div>{t("ResetInstructions")}</div>
           <Grid
             container
             spacing={1}
@@ -133,28 +120,25 @@ function ResetPasswordForm(props) {
             }}
           >
             <Grid item xs={12} sm={12} md={12}>
-              <SubmitButton>Submit</SubmitButton>
+              <SubmitButton>{t("Submit")}</SubmitButton>
             </Grid>
           </Grid>
           <Grid container>
             <Grid item xs>
-              {/*<NavLink
-                to={
-                  props.pageId > 0
-                    ? "/store/" + props.pageId + "/login"
-                    : "/login"
+              <Link
+                href="/[id]/[section]"
+                as={
+                  "/" + (props.pageId == 0 ? "main" : props.pageId) + "/login"
                 }
-                className={classes.links}
               >
-                Back to Login
-              </NavLink>*/}
+                <a className={classes.links} variant="body2">
+                  {t("Back to Login")}
+                </a>
+              </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }

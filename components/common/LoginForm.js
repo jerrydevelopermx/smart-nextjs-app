@@ -6,7 +6,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -18,20 +18,13 @@ import appFunctions from "../../js/functions";
 import { withStyles } from "@material-ui/core/styles";
 import { useMutation } from "@apollo/client";
 import mutations from "../../graphql/mutations";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 function LoginForm(props) {
+  const router = useRouter();
+  const { id } = router.query;
+  const { t } = useTranslation("common");
   let history = useHistory();
   let loginForm = {
     email: "",
@@ -111,18 +104,19 @@ function LoginForm(props) {
   function handleLoginResponse(response) {
     if (response.data.login.userName !== null) {
       localStorage.setItem("user", JSON.stringify(response.data.login));
-      history.push((id !== undefined ? "/store/" + id : "") + "/admin");
+      router.push("/[id]/admin", "/" + id + "/admin");
     } else {
       setLoginError("Login failed, try again.");
     }
   }
 
   function loginSubmit() {
+    console.log(id);
     login({
       variables: {
         username: loginForm.email.value,
         password: loginForm.password.value,
-        store: id !== undefined ? parseInt(id) : 0,
+        store: id !== "main" ? parseInt(id) : 0,
       },
     }).then(
       (res) => handleLoginResponse(res),
@@ -140,7 +134,7 @@ function LoginForm(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Log in
+          {t("Log in")}
         </Typography>
         <form className={classes.form} noValidate>
           <CssTextField
@@ -149,7 +143,7 @@ function LoginForm(props) {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label={t("Email Address")}
             name="email"
             inputRef={(node) => {
               loginForm.email = node;
@@ -161,7 +155,7 @@ function LoginForm(props) {
             required
             fullWidth
             name="password"
-            label="Password"
+            label={t("Password")}
             type="password"
             id="password"
             autoComplete="current-password"
@@ -171,7 +165,7 @@ function LoginForm(props) {
           />
           <FormControlLabel
             control={<CssCheckbox value="remember" color="primary" />}
-            label="Remember me"
+            label={t("Remember me")}
           />
           <Grid
             container
@@ -182,7 +176,7 @@ function LoginForm(props) {
             }}
           >
             <Grid item xs={12} sm={12} md={12}>
-              <SubmitButton onClick={loginSubmit}>Login</SubmitButton>
+              <SubmitButton onClick={loginSubmit}>{t("Submit")}</SubmitButton>
             </Grid>
           </Grid>
           <Grid
@@ -205,37 +199,36 @@ function LoginForm(props) {
           </Grid>
           <Grid container>
             <Grid item xs>
-              {/*<NavLink
-                to={
-                  props.pageId > 0
-                    ? "/store/" + props.pageId + "/resetpassword"
-                    : "/resetpassword"
+              <Link
+                href="/[id]/[section]"
+                as={
+                  "/" +
+                  (props.pageId == 0 ? "main" : props.pageId) +
+                  "/resetpassword"
                 }
-                className={classes.links}
-                variant="body2"
               >
-                Forgot password?
-              </NavLink> */}
+                <a className={classes.links} variant="body2">
+                  {t("Forgot password")}{" "}
+                </a>
+              </Link>
             </Grid>
             <Grid item>
-              {/*<NavLink
-                className={classes.links}
-                to={
-                  props.pageId > 0
-                    ? "/store/" + props.pageId + "/register"
-                    : "/register"
+              <Link
+                href="/[id]/[section]"
+                as={
+                  "/" +
+                  (props.pageId == 0 ? "main" : props.pageId) +
+                  "/register"
                 }
-                variant="body2"
               >
-                {"Not a member? Join Now!"}
-              </NavLink>*/}
+                <a className={classes.links} variant="body2">
+                  {t("Not a member")}
+                </a>
+              </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 }

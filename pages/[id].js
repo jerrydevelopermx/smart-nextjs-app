@@ -17,7 +17,6 @@ import appStyles from "../styles/app.js";
 import js from "../js/components.js";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { i18n } from "next-i18next";
 
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo();
@@ -165,12 +164,3 @@ function StorePage({ ...props }) {
 }
 
 export default StorePage;
-/*
-function Stores() {
-  const router = useRouter();
-  const { id } = router.query;
-
-  return <h1>Store {id} </h1>;
-}
-export default Stores;
-*/

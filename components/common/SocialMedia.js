@@ -1,7 +1,9 @@
 import React from "react";
 import Tooltip from "@material-ui/core/Tooltip";
+import { useTranslation } from "next-i18next";
 
 function SocialMedia(props) {
+  const { t } = useTranslation("common");
   return (
     <div>
       {props.availableNetworks &&
@@ -14,8 +16,8 @@ function SocialMedia(props) {
               href={props.networks[index].link}
             >
               <Tooltip
-                title={"Go to " + network}
-                aria-label={"Go to " + network}
+                title={t("Go to") + network}
+                aria-label={t("Go to") + network}
               >
                 <img
                   key={"netw-" + index}
