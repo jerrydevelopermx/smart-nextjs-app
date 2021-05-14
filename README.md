@@ -1,34 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Smart Shop React Application
 
-## Getting Started
+This is a NextJS React Application used as UI implementation of Smart Shop. It has dependency with some GraphQL server application like [Smart Shop GraphQL Server app](https://github.com/lanton1x/smartshop/tree/Phase2-NextJS/GraphQL) .
 
-First, run the development server:
+## Dependencies
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+| Dependency                | Version          | Description                                                 |
+| ------------------------- | ---------------- | ----------------------------------------------------------- |
+| NodeJS                    | `12.0.0 +`       | Cross-platform, back-end JavaScript runtime environment     |
+| graphql                   | `15.3.0 +`       | GraphQL is a query language for APIs to query existing data |
+| @apollo/client            | `3.3.14 +`       |                                                             |
+| @material-ui/core         | `4.11.3`         |                                                             |
+| @material-ui/data-grid    | `4.0.0-alpha.11` |                                                             |
+| @material-ui/icons        | `4.11.2`         |                                                             |
+| next                      | `10.1.3`         |                                                             |
+| next-i18next              | `8.2.0`          |                                                             |
+| react                     | `17.0.2`         |                                                             |
+| react-color               | `2.19.3`         |                                                             |
+| react-dom                 | `17.0.2`         |                                                             |
+| react-html-parser         | `2.0.2`          |                                                             |
+| react-responsive-carousel | `3.2.9`          |                                                             |
+| react-router-dom          | `5.0.0`          |                                                             |
+| react-router-hash-link    | `2.0.0`          |                                                             |
+| react-scripts             | `3.4.1`          |                                                             |
+| react-toastify            | `7.0.1`          |                                                             |
+| video-react               | `0.14.1`         |                                                             |
+| @tinymce/tinymce-react    | `^3.8.4`         |                                                             |
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Go to project root and type:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+> npm install
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Execution
 
-## Learn More
+> npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+Open a browser navigator at:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+> http://localhost:3000
