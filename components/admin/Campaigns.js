@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import Link from "next/link";
 import { useQuery } from "@apollo/client";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -11,6 +11,7 @@ import queries from "../../graphql/queries";
 import EditForms from "../EditForms";
 
 function Campaigns(props) {
+  console.log(props);
   const { loading, error, data } = useQuery(
     queries.GET_CAMPAIGNS_DATA_BY_DEPT,
     {
@@ -74,21 +75,19 @@ function Campaigns(props) {
       sortable: false,
       width: 200,
       disableClickEventBubbling: true,
-      renderCell: (params: CellParams) => {
+      //valueGetter: (params) =>
+      // `${params.getValue('firstName') || ''} ${params.getValue('lastName') || ''}`,
+      renderCell: (params) => {
         return (
           <>
-            <EditButton
-              component={NavLink}
-              to={
-                props.pageId === "0"
-                  ? `/admin/campaigns/edit/${params.getValue("id")}`
-                  : `/store/${
-                      props.pageId
-                    }/admin/campaigns/edit/${params.getValue("id")}`
-              }
+            <Link
+              href={`/[id]/admin/[section]/[params]`}
+              as={`/${
+                props.pageId == 0 ? "main" : props.pageId
+              }/admin/campaigns/edit/${params.getValue("id")}`}
             >
-              Edit
-            </EditButton>
+              <EditButton component="a">Edit</EditButton>
+            </Link>
             <DeleteButton>Delete</DeleteButton>
           </>
         );
@@ -127,25 +126,27 @@ function Campaigns(props) {
       {props.action === undefined ? (
         <>
           <h3>Campaigns - Creation and Maintenance</h3>
-
-          <AddButton
-            component={NavLink}
-            to={
-              props.pageId === "0"
-                ? "/admin/campaigns/add"
-                : `/store/${props.pageId}/admin/campaigns/add`
-            }
+          <Link
+            href={`/[id]/admin/[section]/[params]`}
+            as={`/${
+              props.pageId == 0 ? "main" : props.pageId
+            }/admin/campaigns/add`}
           >
-            Add Campaign
-          </AddButton>
-
+            <AddButton component="a">Add Campaign</AddButton>
+          </Link>
           <DataTable
             columns={columns}
             rows={data.campaigns}
             rowkey="campaignID"
           />
         </>
-      ) : null}
+      ) : (
+        <EditForms
+          type="CAMPAIGN"
+          action={props.action}
+          styles={props.styles}
+        />
+      )}
     </Container>
   );
 }

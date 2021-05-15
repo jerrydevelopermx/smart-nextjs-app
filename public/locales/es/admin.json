@@ -11,5 +11,20 @@
     "Inventory Management": "Administración de Inventario",
     "Orders Management": "Administración de Órdenes",
     "Payments Management": "Administración de Pagos",
-    "Analytics": "Analíticas"
+    "Analytics": "Analíticas",
+    "Monitoring" : "Monitoreo",
+    "Incident Manager" : "Administrador de Incidentes",
+    "Maintenance" : "Mantenimiento",
+    "Content Manager System" : "Sistema Administrador de Contenido",
+    "Appearance" : "Apariencia",
+    "General Content" : "Contenido General",
+    "Sections Content" : "Contenido de Secciones",
+    "Browser Tab Label"  : "Etiqueta pestaña Navegador",
+    "Site Description" : "Descripción del Sitio",
+    "Blog Link": "Enlance del Blog",
+    "Slides" : "Diapositivas",
+    "Tour Video" : "Video de Tour",
+    "Events" : "Eventos",
+    "Social Networks" : "Redes Sociales",
+    "Submit" : "Enviar"
 }

@@ -17,7 +17,7 @@ import ColorPicker from "../../common/ColorPicker";
 import computedStyles from "../../../styles/computedStyles";
 
 function AppearanceForm(props) {
-  console.log(props);
+  console.log(props.data.sitelogolink);
   const [updateAppearance] = useMutation(mutations.UPDATE_SITE_APPEARANCE);
 
   const [appearance, setAppearance] = useState({
@@ -117,7 +117,7 @@ function AppearanceForm(props) {
 
   return (
     <>
-      <Container component="main" maxWidth="md">
+      <Container component="main" maxWidth="xl">
         <Grid container spacing={1}>
           <Grid
             container
@@ -130,7 +130,7 @@ function AppearanceForm(props) {
             md={2}
           >
             <img
-              src={`${process.env.PUBLIC_URL + "/" + props.data.siteLogoLink}`}
+              src={"/" + props.data.sitelogolink}
               alt=""
               style={{ width: "100px" }}
             />

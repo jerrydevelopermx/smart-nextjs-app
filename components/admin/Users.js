@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import Link from "next/link";
 import { useQuery } from "@apollo/client";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -12,7 +12,6 @@ import EditForms from "../EditForms";
 import { CellParams } from "@material-ui/data-grid";
 
 function Users(props) {
-  console.log(props);
   const { loading, error, data } = useQuery(queries.GET_USERS_DATA);
   if (loading) return <p></p>;
   if (error) return <p>There is an error!</p>;
@@ -74,21 +73,17 @@ function Users(props) {
       sortable: false,
       width: 200,
       disableClickEventBubbling: true,
-      renderCell: (params: CellParams) => {
+      renderCell: (params) => {
         return (
           <>
-            <EditButton
-              component={NavLink}
-              to={
-                props.pageId === "0"
-                  ? `/admin/users/edit/${params.getValue("id")}`
-                  : `/store/${props.pageId}/admin/users/edit/${params.getValue(
-                      "id"
-                    )}`
-              }
+            <Link
+              href={`/[id]/admin/[section]/[params]`}
+              as={`/${
+                props.pageId == 0 ? "main" : props.pageId
+              }/admin/users/edit/${params.getValue("id")}`}
             >
-              Edit
-            </EditButton>
+              <EditButton component="a">Edit</EditButton>
+            </Link>
             <DeleteButton>Delete</DeleteButton>
           </>
         );
@@ -101,23 +96,19 @@ function Users(props) {
       {props.action === undefined ? (
         <>
           <h3>Users - Creation and Maintenance</h3>
-          <AddButton
-            component={NavLink}
-            to={
-              props.pageId === "0"
-                ? "/admin/users/add"
-                : `/store/${props.pageId}/admin/users/add`
-            }
+          <Link
+            href={`/[id]/admin/[section]/[params]`}
+            as={`/${props.pageId == 0 ? "main" : props.pageId}/admin/users/add`}
           >
-            Add user
-          </AddButton>
+            <AddButton component="a">Add user</AddButton>
+          </Link>
 
           <DataTable columns={columns} rows={data.users} />
         </>
       ) : (
         <EditForms
           type="USER"
-          action="add"
+          action={props.action}
           styles={props.styles}
           appButtons={props.buttons}
         />

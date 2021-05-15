@@ -48,7 +48,7 @@ function MediaContentEditRow(props) {
           ) : (
             <img
               alt="contentEditImage"
-              src={`${process.env.PUBLIC_URL}` + props.defaultValue}
+              src={props.defaultValue}
               style={props.style}
             />
           )

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { withStyles } from "@material-ui/core/styles";
-import { useParams } from "react-router";
 import TextField from "@material-ui/core/TextField";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
@@ -16,8 +15,6 @@ import computedStyles from "../../../styles/computedStyles";
 import styles from "../../../styles/app";
 
 function UserEditForm(props) {
-  console.log(props);
-  let { id, section, action, resourceId } = useParams();
   //let user = JSON.parse(localStorage.getItem("user"));
   let textFieldCSS = computedStyles.textField(props);
   let checkboxCSS = computedStyles.checkbox(props);
@@ -451,7 +448,9 @@ function UserEditForm(props) {
             //input.value = '';
           }}
         >
-          <h3>{action.charAt(0).toUpperCase() + action.slice(1)} User</h3>
+          <h3>
+            {props.action.charAt(0).toUpperCase() + props.action.slice(1)} User
+          </h3>
           <FormFieldsGroup
             fields={fields}
             css={textFieldCSS.root}

@@ -11,5 +11,21 @@
     "Inventory Management": "Inventory Management",
     "Orders Management": "Orders Management",
     "Payments Management": "Payments Management",
-    "Analytics": "Analytics"
+    "Analytics": "Analytics",
+    "Monitoring" : "Monitoring",
+    "Incident Manager" : "Incident Manager",
+    "Maintenance" : "Maintenance",
+    "Content Manager System" : "Content Manager System",
+    "Appearance" : "Appearance",
+    "General Content" : "General Content",
+    "Sections Content" : "Sections Content",
+    "Browser Tab Label" : "Browser Tab Label",
+    "Site Description" : "Site Description",
+    "Blog Link": "Blog Link",
+    "Slides" : "Slides",
+    "Tour Video" : "Tour Video",
+    "Events" : "Events",
+    "Social Networks" : "Social Networks",
+    "Submit" : "Submit"
+
 }

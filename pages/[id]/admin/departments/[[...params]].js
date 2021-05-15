@@ -15,6 +15,7 @@ import Users from "../../../../components/admin/Users";
 import UserQueries from "../../../../components/admin/UserQueries";
 import UserEvents from "../../../../components/admin/UserEvents";
 import IncidentManager from "../../../../components/admin/IncidentManager";
+import Departments from "../../../../components/admin/Departments";
 import appStyles from "../../../../styles/app.js";
 import js from "../../../../js/components.js";
 
@@ -39,8 +40,10 @@ export async function getServerSideProps(context) {
 function AdminPage({ ...props }) {
   //let user = JSON.parse(localStorage.getItem("user"));
   const router = useRouter();
-  console.log(router.query);
-  const { id, section, params } = router.query;
+  const { id, params } = router.query;
+
+  console.log(id);
+  console.log(params);
 
   return (
     <div
@@ -85,51 +88,21 @@ function AdminPage({ ...props }) {
             </Hidden>
           </Grid>
           <Grid item xs={12} sm={2} md={10}>
-            {
-              {
-                home: (
-                  <div>
-                    <h1>Welcome to SmartShop Admin Page!</h1>
-                  </div>
-                ),
-                cms: (
-                  <ContentManager
-                    action={"edit"}
-                    styles={props.data.page.styles.header}
-                    pageId={props.data.page.id}
-                    appButtons={appStyles.buttons}
-                    appStyles={appStyles}
-                  />
-                ),
-                campaigns: (
-                  <Campaigns
-                    action={params && params[0]}
-                    buttons={appStyles.buttons}
-                    styles={props.data.page.styles.header}
-                    pageId={props.data.page.id}
-                  />
-                ),
-                incidents: <IncidentManager />,
-                inventory: (
-                  <Inventory
-                    appButtons={appStyles.buttons}
-                    styles={props.data.page.styles.header}
-                    pageId={props.data.page.id}
-                    modalStyles={props.data.page.styles.modalstyles}
-                  />
-                ),
-                users: (
-                  <Users
-                    action={params && params[0]}
-                    styles={props.data.page.styles.header}
-                    buttons={appStyles.buttons}
-                    pageId={props.data.page.id}
-                  />
-                ),
-                userQueries: <UserQueries />,
-                userTracker: <UserEvents />,
-              }[section]
-            }
+            {params === undefined ? (
+              <Departments
+                action={props.action}
+                buttons={appStyles.buttons}
+                styles={props.data.page.styles.header}
+                pageId={props.data.page.id}
+              />
+            ) : (
+              <div>
+                {" "}
+                Dept ID {router.query.params[0]}
+                Section {router.query.params[1]}
+                Item ID {router.query.params[2]}
+              </div>
+            )}
           </Grid>
         </Grid>
       </main>

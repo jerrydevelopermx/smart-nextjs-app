@@ -9,8 +9,11 @@ import components from "../../../js/components";
 
 import MediaContentEditRow from "./MediaContentEditRow";
 import FormFieldsGroup from "./FormFieldsGroup";
+import { useTranslation } from "next-i18next";
 
 function ContentForm(props) {
+  console.log(props);
+  const { t } = useTranslation("admin");
   let textFieldCSS = computedStyles.textField(props);
   let submitButtonCSS = computedStyles.submitButton(props);
   let changeButtonCSS = computedStyles.changeButton(props);
@@ -100,7 +103,7 @@ function ContentForm(props) {
       id: "sitetitletext",
       name: "sitetitletext",
       value: content.sitetitletext,
-      label: "Browser Label",
+      label: t("Browser Tab Label"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -109,7 +112,7 @@ function ContentForm(props) {
       id: "sitemetadescriptiontext",
       name: "sitemetadescriptiontext",
       value: content.sitemetadescriptiontext,
-      label: "Site Description",
+      label: t("Site Description"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -118,7 +121,7 @@ function ContentForm(props) {
       id: "bloglink",
       name: "bloglink",
       value: content.bloglink,
-      label: "Blog Link",
+      label: t("Blog Link"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -292,7 +295,7 @@ function ContentForm(props) {
     <>
       <Container component="main" maxWidth="lg">
         <FormFieldsGroup fields={fieldsGroupTop} css={textFieldCSS.root} />
-        <h4>Slides</h4>
+        <h4>{t("Slides")}</h4>
         {[1, 2, 3, 4, 5].map((number) => (
           <MediaContentEditRow
             key={`mediaElement${number}`}
@@ -306,7 +309,7 @@ function ContentForm(props) {
             onChange={handleViewChange}
           />
         ))}
-        <h4>Tour Video</h4>
+        <h4>{t("Tour Video")}</h4>
         <MediaContentEditRow
           key={`videoElement1`}
           id={`tour`}
@@ -319,7 +322,7 @@ function ContentForm(props) {
           isVideo={true}
           onChange={handleViewChange}
         />
-        <h4>Events</h4>
+        <h4>{t("Events")}</h4>
         {[1, 2, 3].map((number) => (
           <MediaContentEditRow
             key={`eventsElement${number}`}
@@ -329,16 +332,16 @@ function ContentForm(props) {
             d
             style={styles.cmsSlidesPreview}
             cssButton={changeButtonCSS.root}
-            defaultValue={urlRefs[`event${number}efaultlink`]}
+            defaultValue={urlRefs[`event${number}defaultlink`]}
             value={viewContent[`event${number}defaultlink`]}
             onChange={handleViewChange}
           />
         ))}
-        <h4>Social Networks</h4>
+        <h4>{t("Social Networks")}</h4>
         <FormFieldsGroup fields={fieldsGroupBottom} css={textFieldCSS.root} />
         <Grid item xs={12} sm={6} md={12} style={{ textAlign: "center" }}>
           <Button className={submitButtonCSS.root} onClick={handleSave}>
-            Submit
+            {t("Submit")}
           </Button>
         </Grid>
       </Container>

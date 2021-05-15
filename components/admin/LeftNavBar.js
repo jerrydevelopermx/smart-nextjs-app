@@ -89,7 +89,7 @@ function LeftNavBar(props) {
                   </ListItemIcon>
                   <ListItemText
                     className={classes.listItem}
-                    primary="Content Management"
+                    primary={t("Content Management")}
                   />
                 </ListItem>
               </Link>
@@ -105,7 +105,7 @@ function LeftNavBar(props) {
                   </ListItemIcon>
                   <ListItemText
                     className={classes.listItem}
-                    primary="Campaign Management"
+                    primary={t("Campaign Manager")}
                   />
                 </ListItem>
               </Link>
@@ -116,7 +116,7 @@ function LeftNavBar(props) {
                 </ListItemIcon>
                 <ListItemText
                   className={classes.listItem}
-                  primary="Monitoring"
+                  primary={t("Monitoring")}
                 />
               </ListItem>
 
@@ -137,7 +137,7 @@ function LeftNavBar(props) {
                   </ListItemIcon>
                   <ListItemText
                     className={classes.listItem}
-                    primary="Incident Management"
+                    primary={t("Incident Manager")}
                   />
                 </ListItem>
               </Link>
@@ -147,7 +147,7 @@ function LeftNavBar(props) {
                 </ListItemIcon>
                 <ListItemText
                   className={classes.listItem}
-                  primary="Maintenance"
+                  primary={t("Maintenance")}
                 />
               </ListItem>
 
@@ -177,12 +177,10 @@ function LeftNavBar(props) {
           {pageAccess.elements.siteMenuOptions ? (
             <>
               <Link
-                href="/[id]/[section]"
-                as={
-                  props.pageId !== "0"
-                    ? `/store/${props.pageId}/admin/departments`
-                    : `/admin/departments`
-                }
+                href={`/[id]/admin/departments/[params]`}
+                as={`/${
+                  props.pageId == 0 ? "main" : props.pageId
+                }/admin/departments`}
               >
                 <ListItem button className={classes.nested} component="a">
                   <ListItemIcon className={classes.icon}>
@@ -198,12 +196,8 @@ function LeftNavBar(props) {
           ) : (
             <>
               <Link
-                href="/[id]/[section]"
-                as={
-                  props.pageId !== "0"
-                    ? `/store/${props.pageId}/admin/cms`
-                    : `/admin/cms`
-                }
+                href={`/[id]/admin/[section]/[params]`}
+                as={`/${props.pageId == 0 ? "main" : props.pageId}/admin/cms`}
               >
                 <ListItem button className={classes.nested} component="a">
                   <ListItemIcon className={classes.icon}>
@@ -216,12 +210,10 @@ function LeftNavBar(props) {
                 </ListItem>
               </Link>
               <Link
-                href="/[id]/[section]"
-                as={
-                  props.pageId !== "0"
-                    ? `/store/${props.pageId}/admin/campaigns`
-                    : `/admin/campaigns`
-                }
+                href={`/[id]/admin/[section]/[params]`}
+                as={`/${
+                  props.pageId == 0 ? "main" : props.pageId
+                }/admin/campaigns`}
               >
                 <ListItem button className={classes.nested} component="a">
                   <ListItemIcon className={classes.icon}>
@@ -234,12 +226,10 @@ function LeftNavBar(props) {
                 </ListItem>
               </Link>
               <Link
-                href="/[id]/[section]"
-                as={
-                  props.pageId !== "0"
-                    ? `/store/${props.pageId}/admin/inventory`
-                    : `/admin/inventory`
-                }
+                href={`/[id]/admin/[section]/[params]`}
+                as={`/${
+                  props.pageId == 0 ? "main" : props.pageId
+                }/admin/inventory`}
               >
                 <ListItem button className={classes.nested} component="a">
                   <ListItemIcon className={classes.icon}>
@@ -302,12 +292,8 @@ function LeftNavBar(props) {
       <Collapse in={open.users} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <Link
-            href="/[id]/[section]"
-            as={
-              props.pageId === "0"
-                ? "/admin/users"
-                : `/store/${props.pageId}/admin/users`
-            }
+            href={`/[id]/admin/[section]/[params]`}
+            as={`/${props.pageId == 0 ? "main" : props.pageId}/admin/users`}
           >
             <ListItem button className={classes.nested} component="a">
               <ListItemIcon className={classes.icon}>
@@ -321,12 +307,10 @@ function LeftNavBar(props) {
           </Link>
 
           <Link
-            href="/[id]/[section]"
-            as={
-              props.pageId !== "0"
-                ? `/store/${props.pageId}/admin/userQueries`
-                : `/admin/userQueries`
-            }
+            href={`/[id]/admin/[section]/[params]`}
+            as={`/${
+              props.pageId == 0 ? "main" : props.pageId
+            }/admin/userQueries`}
           >
             <ListItem button className={classes.nested} component="a">
               <ListItemIcon className={classes.icon}>
@@ -339,12 +323,10 @@ function LeftNavBar(props) {
             </ListItem>
           </Link>
           <Link
-            href="/[id]/[section]"
-            as={
-              props.pageId !== "0"
-                ? `/store/${props.pageId}/admin/userTracker`
-                : `/admin/userTracker`
-            }
+            href={`/[id]/admin/[section]/[params]`}
+            as={`/${
+              props.pageId == 0 ? "main" : props.pageId
+            }/admin/userTracker`}
           >
             <ListItem button className={classes.nested} component="a">
               <ListItemIcon className={classes.icon}>

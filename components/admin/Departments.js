@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import Link from "next/link";
 import { useQuery } from "@apollo/client";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -100,117 +100,54 @@ function Departments(props) {
       field: "",
       headerName: "",
       sortable: false,
-      width: 90,
+      width: 700,
       disableClickEventBubbling: true,
-      renderCell: (params: CellParams) => {
+      renderCell: (params) => {
         return (
-          <EditButton
-            component={NavLink}
-            to={
-              props.pageId === "0"
-                ? `/admin/departments/${params.getValue(
-                    "departmentid"
-                  )}/edit/${params.getValue("id")}`
-                : `/store/${props.pageId}/admin/departments/${params.getValue(
-                    "id"
-                  )}/edit`
-            }
-          >
-            Edit
-          </EditButton>
+          <>
+            <Link
+              href=""
+              as={
+                props.pageId === "0"
+                  ? `/admin/departments/${params.getValue(
+                      "departmentid"
+                    )}/edit/${params.getValue("id")}`
+                  : `/store/${props.pageId}/admin/departments/${params.getValue(
+                      "id"
+                    )}/edit`
+              }
+            >
+              <EditButton component="a">Edit</EditButton>
+            </Link>
+            <Link href="">
+              <DeleteButton>Delete</DeleteButton>
+            </Link>
+            <Link
+              href=""
+              as={`/admin/departments/${params.getValue("departmentid")}/cms`}
+            >
+              <CmsButton component="a">CMS</CmsButton>
+            </Link>
+            <Link
+              href=""
+              as={`/admin/departments/${params.getValue(
+                "departmentid"
+              )}/campaigns`}
+            >
+              <CampaignsButton component="a">Campaigns</CampaignsButton>
+            </Link>
+            <Link
+              href=""
+              as={`/admin/departments/${params.getValue(
+                "departmentid"
+              )}/inventory`}
+            >
+              <InventoryButton component="a">Inventory</InventoryButton>
+            </Link>
+          </>
         );
       },
     },
-    {
-      field: "",
-      headerName: "",
-      sortable: false,
-      width: 90,
-      disableClickEventBubbling: true,
-      renderCell: (params: CellParams) => {
-        return <DeleteButton>Delete</DeleteButton>;
-      },
-    },
-    {
-      field: "",
-      headerName: "",
-      sortable: false,
-      width: 90,
-      disableClickEventBubbling: true,
-      renderCell: (params: CellParams) => {
-        return (
-          <CmsButton
-            component={NavLink}
-            to={`/admin/departments/${params.getValue("departmentid")}/cms`}
-          >
-            CMS
-          </CmsButton>
-        );
-      },
-    },
-    {
-      field: "",
-      headerName: "",
-      sortable: false,
-      width: 130,
-      disableClickEventBubbling: true,
-      renderCell: (params: CellParams) => {
-        return (
-          <CampaignsButton
-            component={NavLink}
-            to={`/admin/departments/${params.getValue(
-              "departmentid"
-            )}/campaigns`}
-          >
-            Campaigns
-          </CampaignsButton>
-        );
-      },
-    },
-    {
-      field: "",
-      headerName: "",
-      sortable: false,
-      width: 130,
-      disableClickEventBubbling: true,
-      renderCell: (params: CellParams) => {
-        return (
-          <InventoryButton
-            component={NavLink}
-            to={`/admin/departments/${params.getValue(
-              "departmentid"
-            )}/inventory`}
-          >
-            Inventory
-          </InventoryButton>
-        );
-      },
-    },
-    /*{
-      field: "",
-      headerName: "",
-      sortable: false,
-      width: 100,
-      disableClickEventBubbling: true,
-      renderCell: (params: CellParams) => {
-        const onClick = () => {
-          const api: GridApi = params.api;
-          const fields = api
-            .getAllColumns()
-            .map((c) => c.field)
-            .filter((c) => c !== "__check__" && !!c);
-          const thisRow = {};
-
-          fields.forEach((f) => {
-            thisRow[f] = params.getValue(f);
-          });
-
-          return alert(JSON.stringify(thisRow, null, 4));
-        };
-
-        return <Button onClick={onClick}>Click</Button>;
-      },
-    },*/
   ];
 
   return (
@@ -218,29 +155,26 @@ function Departments(props) {
       {props.action === undefined ? (
         <>
           <h3>Departments - Creation and Maintenance</h3>
-
-          <AddButton
-            component={NavLink}
-            to={
-              props.pageId === "0"
-                ? "/admin/departments/add"
-                : `/store/${props.pageId}/admin/departments/add`
-            }
+          <Link
+            href={`/[id]/admin/[section]/[params]`}
+            as={`/${
+              props.pageId == 0 ? "main" : props.pageId
+            }/admin/departments/add`}
           >
-            Add department
-          </AddButton>
-
+            <AddButton component="a">Add department</AddButton>
+          </Link>
           <DataTable columns={columns} rows={data.departments} />
         </>
       ) : (
         <>
-          <EditForms type="DEPARTMENT" action="add" styles={props.styles} />
+          <EditForms
+            type="DEPARTMENT"
+            action={props.action}
+            styles={props.styles}
+          />
         </>
       )}
     </Container>
   );
 }
 export default Departments;
-//id,        section,     action,    departmentId,  deptSection
-//undefined  "campaigns"  undefined     undefined      undefined
-//undefined  undefined    undefined        "1"         "campaigns"

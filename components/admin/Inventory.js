@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import Link from "next/link";
 import { useQuery } from "@apollo/client";
 import { CellParams } from "@material-ui/data-grid";
 import { Container, Paper, Tabs, Tab, Button } from "@material-ui/core";
@@ -77,14 +77,12 @@ function Inventory(props) {
       sortable: false,
       width: 200,
       disableClickEventBubbling: true,
-      renderCell: (params: CellParams) => {
+      renderCell: (params) => {
         return (
           <>
-            <Button
-              className={changeButtonCSS.root}
-              style={{ margin: "10px" }}
-              component={NavLink}
-              to={
+            <Link
+              href=""
+              as={
                 props.pageId === "0"
                   ? `/admin/inventory/edit/${params.getValue("id")}`
                   : `/store/${
@@ -92,8 +90,14 @@ function Inventory(props) {
                     }/admin/inventory/edit/${params.getValue("id")}`
               }
             >
-              Edit
-            </Button>
+              <Button
+                className={changeButtonCSS.root}
+                style={{ margin: "10px" }}
+                component="a"
+              >
+                Edit
+              </Button>
+            </Link>
             <Button className={deleteButtonCSS.root} style={{ margin: "10px" }}>
               Delete
             </Button>
@@ -119,7 +123,7 @@ function Inventory(props) {
       sortable: false,
       width: 250,
       disableClickEventBubbling: true,
-      renderCell: (params: CellParams) => {
+      renderCell: (params) => {
         return (
           <>
             <Button
@@ -170,17 +174,18 @@ function Inventory(props) {
         <TabPanel value={activeTab} index={0}>
           {props.action === undefined ? (
             <>
-              <Button
-                className={addButtonCSS.root}
-                component={NavLink}
-                to={
+              <Link
+                href=""
+                as={
                   props.pageId === "0"
                     ? "/admin/inventory/add"
                     : `/store/${props.pageId}/admin/inventory/add`
                 }
               >
-                New Product
-              </Button>
+                <Button className={addButtonCSS.root} component="a">
+                  New Product
+                </Button>
+              </Link>
 
               <DataTable columns={columns} rows={data.productos} />
             </>

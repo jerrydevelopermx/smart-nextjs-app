@@ -6,6 +6,7 @@ import AppearanceForm from "./forms/AppearanceForm";
 import ContentForm from "./forms/ContentForm";
 import JsonContent from "./forms/JsonContent";
 import queries from "../../graphql/queries";
+import { useTranslation } from "next-i18next";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -24,6 +25,7 @@ function TabPanel(props) {
 }
 
 function ContentManager(props) {
+  const { t } = useTranslation("admin");
   const { loading, error, data } = useQuery(queries.GET_CMS_BY_ID, {
     variables: {
       siteId: props.pageId,
@@ -114,17 +116,17 @@ function ContentManager(props) {
   if (error) return <p>There is an error!</p>;
   return (
     <Container component="main" maxWidth="lg">
-      <h2>Content Manager System</h2>
+      <h2>{t("Content Manager System")}</h2>
       <Paper square>
         <Tabs
           TabIndicatorProps={{ className: classes.indicator }}
           value={value}
           onChange={handleChange}
-          aria-label="simple tabs example"
+          aria-label="content manager tabs"
         >
-          <Tab label="Appearance" {...a11yProps(0)} />
-          <Tab label="General Content" {...a11yProps(1)} />
-          <Tab label="Sections Content" {...a11yProps(2)} />
+          <Tab label={t("Appearance")} {...a11yProps(0)} />
+          <Tab label={t("General Content")} {...a11yProps(1)} />
+          <Tab label={t("Sections Content")} {...a11yProps(2)} />
         </Tabs>
       </Paper>
       <TabPanel value={value} index={0}>
