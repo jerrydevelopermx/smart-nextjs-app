@@ -13,9 +13,10 @@ import ReactHtmlParser from "react-html-parser";
 import appFunctions from "../../js/functions";
 import components from "../../js/components";
 import ContactForm from "./ContactForm";
+import { useTranslation } from "next-i18next";
 
 function ModalContent(props) {
-  console.log(props);
+  const { t } = useTranslation("common");
 
   const useStyles = makeStyles((theme) => ({
     modalPaper: {
@@ -111,7 +112,7 @@ function ModalContent(props) {
       aria-labelledby="max-width-dialog-title"
     >
       <DialogTitle
-        disableTypography="true"
+        disableTypography={true}
         style={{
           color: props.styles.header.color,
           background: props.styles.header.background,
@@ -119,7 +120,7 @@ function ModalContent(props) {
         }}
         id="max-width-dialog-title"
       >
-        {components.modalTitles[props.status.sectionId]}
+        {t(props.status.sectionId)}
         <IconButton
           aria-label="close"
           style={{
@@ -148,7 +149,7 @@ function ModalContent(props) {
           color="primary"
           onClick={props.onClose}
         >
-          Close
+          {t("Close")}
         </CloseButton>
       </DialogActions>
     </Dialog>

@@ -61,6 +61,36 @@ const computed = {
       backgroundColor: (props) => props.appButtons.delete.root.backgroundColor,
     },
   }),
+  addToCartButton: makeStyles({
+    root: {
+      "&:hover": {
+        backgroundColor: (props) =>
+          props.buttons.addToCart.root.hover.backgroundColor,
+      },
+      color: (props) => props.buttons.addToCart.root.color,
+      backgroundColor: (props) => props.buttons.addToCart.root.backgroundColor,
+    },
+  }),
+  checkoutButton: makeStyles({
+    root: {
+      "&:hover": {
+        backgroundColor: (props) =>
+          props.buttons.checkout.root.hover.backgroundColor,
+      },
+      color: (props) => props.buttons.checkout.root.color,
+      backgroundColor: (props) => props.buttons.checkout.root.backgroundColor,
+    },
+  }),
+  viewMoreButton: makeStyles({
+    root: {
+      "&:hover": {
+        backgroundColor: (props) =>
+          props.buttons.viewMore.root.hover.backgroundColor,
+      },
+      color: (props) => props.buttons.viewMore.root.color,
+      backgroundColor: (props) => props.buttons.viewMore.root.backgroundColor,
+    },
+  }),
   checkbox: makeStyles({
     root: {
       color: (props) => props.styles.mobilenavbar.paper.background,

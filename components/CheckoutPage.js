@@ -10,8 +10,10 @@ import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import DeleteIcon from "@material-ui/icons/Delete";
 import appFunctions from "../js/functions";
+import { useTranslation } from "next-i18next";
 
 function CheckoutPage(props) {
+  const { t } = useTranslation("common");
   let cartItems = [
     {
       image: "bag1.jpg",
@@ -54,7 +56,7 @@ function CheckoutPage(props) {
       aria-labelledby="max-width-dialog-title"
     >
       <DialogTitle style={props.styles.header} id="max-width-dialog-title">
-        Checkout
+        {t("Checkout")}
         <IconButton
           aria-label="close"
           style={{
@@ -78,7 +80,7 @@ function CheckoutPage(props) {
           >
             <Grid item xs={4} sm={4} md={4} style={{ textAlign: "center" }}>
               <img
-                src={`${process.env.PUBLIC_URL}/imgs/${item.image}`}
+                src={`/imgs/${item.image}`}
                 alt=""
                 style={{ height: "80px" }}
               />
@@ -121,12 +123,12 @@ function CheckoutPage(props) {
         <Grid container spacing={3}>
           <Grid item xs={4} sm={4} md={4}></Grid>
           <Grid item xs={4} sm={4} md={4} style={{ textAlign: "right" }}>
-            Subtotal <br />
-            Delivery:
-            <br /> Total: <br />
-            ETA(*) <br />
-            Service(*)
-            <br /> Pick-up (*)
+            {t("Subtotal")} <br />
+            {t("Delivery")}
+            <br /> {t("Total")}: <br />
+            {t("ETA")}(*) <br />
+            {t("Service")}(*)
+            <br /> {t("Pick-up")}(*)
           </Grid>
           <Grid item xs={4} sm={4} md={4} style={{ textAlign: "center" }}>
             $ 425.00 <br />$ 99.00 <br />
@@ -143,7 +145,7 @@ function CheckoutPage(props) {
             color="primary"
             onClick={props.onClose}
           >
-            Close
+            {t("Close")}
           </CloseButton>
         </DialogActions>
       </DialogContent>

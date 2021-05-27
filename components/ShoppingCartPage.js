@@ -12,9 +12,10 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import DeleteIcon from "@material-ui/icons/Delete";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import appFunctions from "../js/functions";
+import { useTranslation } from "next-i18next";
 
 function ShoppingCartPage(props) {
-  console.log(props);
+  const { t } = useTranslation("common");
   let cartItems = [
     {
       image: "bag1.jpg",
@@ -57,7 +58,7 @@ function ShoppingCartPage(props) {
       aria-labelledby="max-width-dialog-title"
     >
       <DialogTitle style={props.styles.header} id="max-width-dialog-title">
-        Shopping Cart
+        {t("Shopping Cart")}
         <IconButton
           aria-label="close"
           style={{
@@ -81,7 +82,7 @@ function ShoppingCartPage(props) {
           >
             <Grid item xs={4} sm={4} md={4} style={{ textAlign: "center" }}>
               <img
-                src={`${process.env.PUBLIC_URL}/imgs/${item.image}`}
+                src={`/imgs/${item.image}`}
                 alt=""
                 style={{ height: "110px" }}
               />
@@ -146,7 +147,7 @@ function ShoppingCartPage(props) {
             color="primary"
             onClick={props.onClose}
           >
-            Close
+            {t("Close")}
           </CloseButton>
         </DialogActions>
       </DialogContent>

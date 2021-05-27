@@ -68,7 +68,7 @@ function Footer(props) {
                     <ul className={classes.footerUlList}>
                       {column.options.map((option, index) => (
                         <li key={"footOpt" + index}>
-                          <Link href="">
+                          <Link href="/">
                             <a
                               style={props.styles.footerlinks}
                               className={classes.footerLinks}

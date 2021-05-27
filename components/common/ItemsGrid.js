@@ -5,9 +5,16 @@ import Grid from "@material-ui/core/Grid";
 import Link from "next/link";
 import ShoppingCartPage from "../ShoppingCartPage";
 import CheckoutPage from "../CheckoutPage";
-import ReviewPage from "../ReviewPage";
+import Button from "@material-ui/core/Button";
+import computedStyles from "../../styles/computedStyles";
+import { useTranslation } from "next-i18next";
 
 function ItemsGrid(props) {
+  const { t } = useTranslation("common");
+  let addToCartButtonCSS = computedStyles.addToCartButton(props.appStyles);
+  let viewMoreButtonCSS = computedStyles.viewMoreButton(props.appStyles);
+  let checkoutButtonCSS = computedStyles.checkoutButton(props.appStyles);
+
   const [details, setDetails] = useState({
     open: false,
     productId: "",
@@ -50,11 +57,6 @@ function ItemsGrid(props) {
         open={modalsStatus.checkout}
         styles={props.modalStyles}
         onClose={() => setModals("checkout", false)}
-      />
-      <ReviewPage
-        open={modalsStatus.review}
-        styles={props.modalStyles}
-        onClose={() => setModals("review", false)}
       />
 
       {props.items.map((item, index) => (
@@ -141,8 +143,7 @@ function ItemsGrid(props) {
                     <div>{item.description.substring(0, 50)}...</div>
                     <div style={{ marginTop: "30px" }}>
                       <Link
-                        to=""
-                        href=""
+                        href="/"
                         style={{
                           height: "35px",
                           backgroundColor: "#228b22",
@@ -153,16 +154,19 @@ function ItemsGrid(props) {
                           padding: "5px",
                           margin: "5px",
                         }}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setModals("shoppingCart", true);
-                        }}
                       >
-                        Add to cart
+                        <Button
+                          className={addToCartButtonCSS.root}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setModals("shoppingCart", true);
+                          }}
+                        >
+                          {t("Add to Cart")}
+                        </Button>
                       </Link>
                       <Link
-                        to=""
-                        href=""
+                        href="/"
                         style={{
                           height: "35px",
                           backgroundColor: "#cccc00",
@@ -173,16 +177,20 @@ function ItemsGrid(props) {
                           padding: "5px",
                           margin: "5px",
                         }}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setModals("checkout", true);
-                        }}
                       >
-                        Checkout
+                        <Button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setModals("checkout", true);
+                          }}
+                          className={checkoutButtonCSS.root}
+                        >
+                          {t("Checkout")}
+                        </Button>
                       </Link>
                       <Link
-                        to={"/store/" + props.pageId + "/product/" + item.id}
-                        href=""
+                        as={"/" + props.pageId + "/product/" + item.id}
+                        href="/[id]/product/[productId]"
                         style={{
                           height: "35px",
                           backgroundColor: "red",
@@ -194,7 +202,9 @@ function ItemsGrid(props) {
                           margin: "5px",
                         }}
                       >
-                        View more
+                        <Button className={viewMoreButtonCSS.root}>
+                          {t("View More")}
+                        </Button>
                       </Link>
                     </div>
                   </div>

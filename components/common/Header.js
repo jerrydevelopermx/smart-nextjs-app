@@ -2,7 +2,6 @@ import { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { useLazyQuery } from "@apollo/client";
-//import { NavHashLink as NavLink } from "react-router-hash-link";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -126,10 +125,9 @@ function Header(props) {
       },
     },
   }));
-
   const classes = useStyles();
-
-  const StyledMenu = withStyles(props.styles.styledmenu)((props) => (
+  let paper = { paper: props.styles.styledmenu.paper };
+  const StyledMenu = withStyles(paper)((props) => (
     <Menu
       elevation={0}
       getContentAnchorEl={null}
@@ -144,7 +142,7 @@ function Header(props) {
       {...props}
     />
   ));
-  const StyledlLoggedMenu = withStyles(props.styles.styledmenu)((props) => (
+  const StyledlLoggedMenu = withStyles(paper)((props) => (
     <Menu
       style={{ marginTop: "40px" }}
       elevation={0}
@@ -426,7 +424,6 @@ function Header(props) {
                                       : menuClickScroll(item.action, e)
                                     : null
                                 }
-                                exact
                               >
                                 {t(item.label)}
                               </a>
@@ -445,7 +442,6 @@ function Header(props) {
                           onClick={handleClick}
                           className={classes.headerMenu}
                           style={props.styles.headermenu}
-                          exact
                         >
                           {t(item.label)}
                         </a>
