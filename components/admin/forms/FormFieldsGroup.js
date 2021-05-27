@@ -129,8 +129,9 @@ function FormFieldsGroup(props) {
             </Grid>
           ),
           radiogroup: (
-            <FormControl component="fieldset">
+            <FormControl component="fieldset" key="radioGroupFormCtrl">
               <RadioGroup
+                key={`checkbox-grp`}
                 aria-label="userType"
                 name="usertType"
                 row
@@ -138,10 +139,15 @@ function FormFieldsGroup(props) {
                 //onChange={handleTypeChange}
               >
                 {field.options &&
-                  field.options.map((option) => (
+                  field.options.map((option, index) => (
                     <FormControlLabel
+                      key={`checkbox-grp-${index}`}
                       control={
-                        <Radio className={props.cssRadio} color="default" />
+                        <Radio
+                          key={`checkbox-${index}`}
+                          className={props.cssRadio}
+                          color="default"
+                        />
                       }
                       label={option.label}
                       value={option.value}

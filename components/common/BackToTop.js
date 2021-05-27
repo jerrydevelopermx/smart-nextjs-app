@@ -1,7 +1,9 @@
 import React from "react";
 import Tooltip from "@material-ui/core/Tooltip";
+import { useTranslation } from "next-i18next";
 
 function BackToTop(props) {
+  const { t } = useTranslation("common");
   function scrollToTop() {
     window.scrollTo(0, 0);
   }
@@ -23,7 +25,7 @@ function BackToTop(props) {
       }}
       onClick={scrollToTop}
     >
-      <Tooltip title="Back to Top" aria-label="Back to Top">
+      <Tooltip title={t("Back to Top")} aria-label="Back to Top">
         <img src={`/imgs/up-arrow.png`} style={{ height: "70px" }} alt="" />
       </Tooltip>
     </div>

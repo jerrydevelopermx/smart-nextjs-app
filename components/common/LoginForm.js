@@ -216,7 +216,7 @@ function LoginForm(props) {
                 as={
                   "/" +
                   (props.pageId == 0 ? "main" : props.pageId) +
-                  "/access/register"
+                  "/access/signup"
                 }
               >
                 <a className={classes.links} variant="body2">

@@ -26,6 +26,26 @@
     "Tour Video" : "Tour Video",
     "Events" : "Events",
     "Social Networks" : "Social Networks",
-    "Submit" : "Submit"
+    "Submit" : "Submit",
+    "Sign Up": "Sign Up",
+    "First Name" : "First Name",
+    "Last name" : "Last name", 
+    "Cellphone number" : "Cellphone number",
+    "Landline number" : "Landline number",
+    "Address 1" : "Address 1",
+    "Address 2" : "Address 2",
+    "City" : "City",
+    "Postal code" : "Postal code",
+    "State": "State",
+    "Country" : "Country",
+    "Access" : "Access",
+    "Username" : "Username", 
+    "Password" : "Password",
+    "Website" : "Website",
+    "Facebook Link" : "Facebook Link",
+    "Twitter Link" : "Twitter Link",
+    "Instagram Link" : "Instagram Link",
+    "Pinterest Link" : "Pinterest Link",
+    "Interests" : "Interests (Mark all you want)"
 
 }

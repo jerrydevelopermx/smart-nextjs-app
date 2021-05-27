@@ -27,6 +27,7 @@ export async function getServerSideProps(context) {
         "common",
         "header",
         "footer",
+        "admin",
       ])),
     },
   };
@@ -60,7 +61,7 @@ function CredentialsPage(props) {
             styles={props.data.page.styles.header}
             pageId={props.data.page.id}
           />
-        ) : section === "register" ? (
+        ) : section === "signup" ? (
           <RegisterForm styles={props.data.page.styles.header} />
         ) : (
           <ResetPasswordForm

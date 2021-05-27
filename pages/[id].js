@@ -50,7 +50,7 @@ function StorePage({ ...props }) {
 
   useEffect(() => {
     //const id = props.match.params.id ? props.match.params.id : 0;
-    const { id } = router.query;
+
     setPageId(id);
     setFilteredItems(null);
     setFilters([]);

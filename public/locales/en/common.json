@@ -34,6 +34,13 @@
     "Total": "Total",
     "ETA" : "ETA", 
     "Service" : "Service",
-    "Pick-up" : "Pick-up"
+    "Pick-up" : "Pick-up",
+    "Description": "Description",
+    "Specifications" : "Specifications",
+    "Warranties": "Warranties",
+    "Attributes" : "Attributes",
+    "Add to Wish List" : "Add to Wish List",
+    "Back to Top" : "Back to Top"
+
 
 }
