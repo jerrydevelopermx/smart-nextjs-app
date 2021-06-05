@@ -298,7 +298,7 @@ function Header(props) {
           className={classes.toolbarSecondary}
         >
           <Hidden only={["sm", "md", "lg", "xl"]}>
-            {/*<MobileNavBar
+            <MobileNavBar
               list={props.menu}
               pageId={props.pageId}
               blogLink={props.blogLink}
@@ -307,7 +307,7 @@ function Header(props) {
               appStyles={props.appStyles.modalMenu}
               onClick={mobileMenuClickHandler}
               fontFamily={props.fontFamily}
-            /> */}
+            />
           </Hidden>
           {props.menu &&
             props.menu.map((item) => {

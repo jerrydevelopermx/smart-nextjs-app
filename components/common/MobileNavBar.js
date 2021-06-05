@@ -10,9 +10,10 @@ import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 
 function MobileNavBar(props) {
-  console.log(props.styles);
+  const { t } = useTranslation("header");
   const useStyles = makeStyles(props.styles);
   const classes = useStyles();
   const [state, setState] = useState(false);
@@ -86,28 +87,30 @@ function MobileNavBar(props) {
                       />
                     </ListItemLink>
                   ) : (
-                    <ListItem
-                      button
-                      component={Link}
-                      to={getMenuLinks(element)}
-                      key={element.label}
-                      onClick={() => {
-                        props.onClick(element.action);
-                        toggleDrawer(false);
-                      }}
-                    >
-                      <ListItemText
-                        className={classes2.listItem}
-                        primary={element.label}
-                      />
-                    </ListItem>
+                    <Link href="/" key={element.label}>
+                      <ListItem
+                        button
+                        component="a"
+                        to={getMenuLinks(element)}
+                        key={element.label}
+                        onClick={() => {
+                          props.onClick(element.action);
+                          toggleDrawer(false);
+                        }}
+                      >
+                        <ListItemText
+                          className={classes2.listItem}
+                          primary={t(element.label)}
+                        />
+                      </ListItem>
+                    </Link>
                   )
                 ) : element.type === "submenu" ? (
                   <div key={"f" + index}>
                     <ListItem key={"s" + index} button onClick={handleClick}>
                       <ListItemText
                         className={classes2.listItem}
-                        primary="Our Services"
+                        primary={t("Our Services")}
                       />
                       {submenuOpen ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
@@ -115,7 +118,7 @@ function MobileNavBar(props) {
                       <List component="div" disablePadding>
                         {element.items.map((submenu, index) => (
                           <ListItem
-                            key={index}
+                            key={`sublist-${index}`}
                             button
                             onClick={() => {
                               props.onClick(submenu.action);
@@ -125,7 +128,7 @@ function MobileNavBar(props) {
                           >
                             <ListItemText
                               className={classes2.listItem}
-                              primary={submenu.text}
+                              primary={t(submenu.text)}
                             />
                           </ListItem>
                         ))}

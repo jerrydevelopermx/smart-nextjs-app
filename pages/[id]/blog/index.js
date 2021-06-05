@@ -12,6 +12,8 @@ import queries from "../../../graphql/queries.js";
 import js from "../../../js/components.js";
 import { initializeApollo } from "../../../lib/apolloClient";
 
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 export async function getServerSideProps(context) {
   const apolloClient = initializeApollo();
   const { data } = await apolloClient.query({
@@ -25,6 +27,11 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data: data,
+      ...(await serverSideTranslations(data.page.lang, [
+        "common",
+        "header",
+        "footer",
+      ])),
     },
   };
 }

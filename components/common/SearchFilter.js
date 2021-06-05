@@ -23,12 +23,16 @@ function SearchFilter(props) {
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
             label={t("Categories")}
+            defaultValue=""
             onChange={props.onCategoryChange}
           >
+            <MenuItem value="">
+              <em>Select</em>
+            </MenuItem>
             {props.categories &&
               props.categories.length > 0 &&
               props.categories.map((option) => (
-                <MenuItem key={option.id} value={option.id}>
+                <MenuItem key={option.id} value={option.id || ""}>
                   {option.name}
                 </MenuItem>
               ))}
@@ -58,6 +62,7 @@ function SearchFilter(props) {
                       onChange={(e) =>
                         props.onFilterChange(item.name, e.target.value)
                       }
+                      defaultValue=""
                     >
                       <MenuItem value="">
                         <em>None</em>
@@ -65,7 +70,7 @@ function SearchFilter(props) {
                       {item &&
                         item.values &&
                         item.values.map((option) => (
-                          <MenuItem key={option.id} value={option.name}>
+                          <MenuItem key={option.id} value={option.name || ""}>
                             {option.name}
                           </MenuItem>
                         ))}
