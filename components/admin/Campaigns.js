@@ -9,9 +9,10 @@ import { CellParams } from "@material-ui/data-grid";
 import CampaignEditForm from "./forms/CampaignEditForm";
 import queries from "../../graphql/queries";
 import EditForms from "../EditForms";
+import { useTranslation } from "next-i18next";
 
 function Campaigns(props) {
-  console.log(props);
+  const { t } = useTranslation("admin");
   const { loading, error, data } = useQuery(
     queries.GET_CAMPAIGNS_DATA_BY_DEPT,
     {
@@ -57,18 +58,18 @@ function Campaigns(props) {
 
   const columns = [
     { field: "id", headerName: "ID", width: 70, key: "campaignID" },
-    { field: "campaignnumber", headerName: "Number", width: 140 },
-    { field: "departmentid", headerName: "Dept", width: 130 },
+    { field: "campaignnumber", headerName: t("Number"), width: 140 },
+    { field: "departmentid", headerName: t("Dept"), width: 130 },
     {
       field: "campaigntype",
-      headerName: "Type",
+      headerName: t("Type"),
       width: 90,
     },
-    { field: "campaignoccurrence", headerName: "Ocurrence", width: 140 },
-    { field: "gridpositionindex", headerName: "Position", width: 140 },
-    { field: "promotedfromdatime", headerName: "From", width: 140 },
-    { field: "promotedtodatime", headerName: "To", width: 140 },
-    { field: "campaignstatus", headerName: "Status", width: 140 },
+    { field: "campaignoccurrence", headerName: t("Ocurrence"), width: 140 },
+    { field: "gridpositionindex", headerName: t("Position"), width: 140 },
+    { field: "promotedfromdatime", headerName: t("From Date"), width: 140 },
+    { field: "promotedtodatime", headerName: t("To Date"), width: 140 },
+    { field: "campaignstatus", headerName: t("Status"), width: 140 },
     {
       field: "",
       headerName: "",
@@ -86,9 +87,9 @@ function Campaigns(props) {
                 props.pageId == 0 ? "main" : props.pageId
               }/admin/campaigns/edit/${params.getValue("id")}`}
             >
-              <EditButton component="a">Edit</EditButton>
+              <EditButton component="a">{t("Edit")}</EditButton>
             </Link>
-            <DeleteButton>Delete</DeleteButton>
+            <DeleteButton>{t("Delete")}</DeleteButton>
           </>
         );
       },
@@ -125,14 +126,16 @@ function Campaigns(props) {
     <Container component="main" maxWidth="lg">
       {props.action === undefined ? (
         <>
-          <h3>Campaigns - Creation and Maintenance</h3>
+          <Container style={{ textAlign: "center" }}>
+            <h2>{`${t("Campaigns")} - ${t("Creation and Maintenance")} `}</h2>
+          </Container>
           <Link
             href={`/[id]/admin/[section]/[params]`}
             as={`/${
               props.pageId == 0 ? "main" : props.pageId
             }/admin/campaigns/add`}
           >
-            <AddButton component="a">Add Campaign</AddButton>
+            <AddButton component="a">{t("Add Campaign")}</AddButton>
           </Link>
           <DataTable
             columns={columns}

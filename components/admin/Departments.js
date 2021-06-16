@@ -10,8 +10,10 @@ import queries from "../../graphql/queries";
 
 import { CellParams } from "@material-ui/data-grid";
 import EditForms from "../EditForms";
+import { useTranslation } from "next-i18next";
 
 function Departments(props) {
+  const { t } = useTranslation("admin");
   const { loading, error, data } = useQuery(queries.GET_DEPARTMENTS_DATA, {
     /*variables: {
       storeId: id !== undefined ? id : 0,
@@ -86,14 +88,14 @@ function Departments(props) {
 
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
-    { field: "departmentid", headerName: "Department ID", width: 140 },
-    { field: "departmentname", headerName: "Name", width: 130 },
+    { field: "departmentid", headerName: t("Department ID"), width: 140 },
+    { field: "departmentname", headerName: t("Name"), width: 130 },
     {
       field: "deptstatus",
-      headerName: "Status",
+      headerName: t("Status"),
       width: 80,
     },
-    { field: "createddatime", headerName: "Created", width: 130 },
+    { field: "createddatime", headerName: t("Created"), width: 130 },
     /*{ field: "modifiedDatime", headerName: "Updated", width: 100 },
     { field: "createdByID", headerName: "Created by", width: 100 },*/
     {
@@ -106,43 +108,39 @@ function Departments(props) {
         return (
           <>
             <Link
-              href=""
-              as={
-                props.pageId === "0"
-                  ? `/admin/departments/${params.getValue(
-                      "departmentid"
-                    )}/edit/${params.getValue("id")}`
-                  : `/store/${props.pageId}/admin/departments/${params.getValue(
-                      "id"
-                    )}/edit`
-              }
+              href={`/[id]/admin/departments/[params]`}
+              as={`/${
+                props.pageId == 0 ? "main" : props.pageId
+              }/admin/departments/edit/${params.getValue("departmentid")}`}
             >
-              <EditButton component="a">Edit</EditButton>
+              <EditButton component="a">{t("Edit")}</EditButton>
             </Link>
             <Link href="">
-              <DeleteButton>Delete</DeleteButton>
+              <DeleteButton>{t("Delete")}</DeleteButton>
             </Link>
             <Link
-              href=""
-              as={`/admin/departments/${params.getValue("departmentid")}/cms`}
+              href={`/[id]/admin/departments/[params]`}
+              as={`/${
+                props.pageId == 0 ? "main" : props.pageId
+              }/admin/departments/cms/${params.getValue("departmentid")}`}
             >
               <CmsButton component="a">CMS</CmsButton>
             </Link>
             <Link
-              href=""
-              as={`/admin/departments/${params.getValue(
-                "departmentid"
-              )}/campaigns`}
+              href={`/[id]/admin/departments/[params]`}
+              as={`/${
+                props.pageId == 0 ? "main" : props.pageId
+              }/admin/departments/campaigns/${params.getValue("departmentid")}`}
             >
-              <CampaignsButton component="a">Campaigns</CampaignsButton>
+              <CampaignsButton component="a">{t("Campaigns")}</CampaignsButton>
             </Link>
             <Link
-              href=""
-              as={`/admin/departments/${params.getValue(
-                "departmentid"
-              )}/inventory`}
+              href={`/[id]/admin/departments/[params]`}
+              as={`/${
+                props.pageId == 0 ? "main" : props.pageId
+              }/admin/departments/inventory/${params.getValue("id")}`}
             >
-              <InventoryButton component="a">Inventory</InventoryButton>
+              <InventoryButton component="a">{t("Inventory")}</InventoryButton>
             </Link>
           </>
         );
@@ -154,14 +152,16 @@ function Departments(props) {
     <Container component="main" maxWidth="lg">
       {props.action === undefined ? (
         <>
-          <h3>Departments - Creation and Maintenance</h3>
+          <Container style={{ textAlign: "center" }}>
+            <h2>{`${t("Departments")} - ${t("Creation and Maintenance")}`}</h2>
+          </Container>
           <Link
-            href={`/[id]/admin/[section]/[params]`}
+            href={`/[id]/admin/departments/[params]`}
             as={`/${
               props.pageId == 0 ? "main" : props.pageId
             }/admin/departments/add`}
           >
-            <AddButton component="a">Add department</AddButton>
+            <AddButton component="a">{t("New Department")}</AddButton>
           </Link>
           <DataTable columns={columns} rows={data.departments} />
         </>

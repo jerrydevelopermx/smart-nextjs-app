@@ -13,8 +13,10 @@ import mutations from "../../../graphql/mutations";
 import FormFieldsGroup from "./FormFieldsGroup";
 import computedStyles from "../../../styles/computedStyles";
 import styles from "../../../styles/app";
+import { useTranslation } from "next-i18next";
 
 function UserEditForm(props) {
+  const { t } = useTranslation("admin");
   //let user = JSON.parse(localStorage.getItem("user"));
   let textFieldCSS = computedStyles.textField(props);
   let checkboxCSS = computedStyles.checkbox(props);
@@ -99,7 +101,7 @@ function UserEditForm(props) {
       id: "userfirstname",
       name: "userfirstname",
       value: (user && user.userfirstname) || "",
-      label: "First Name",
+      label: t("First Name"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -108,7 +110,7 @@ function UserEditForm(props) {
       id: "userlastname",
       name: "userlastname",
       value: (user && user.userlastname) || "",
-      label: "Last name",
+      label: t("Last name"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -117,7 +119,7 @@ function UserEditForm(props) {
       id: "cellphonenumber",
       name: "cellphonenumber",
       value: (user && user.cellphonenumber) || "",
-      label: "Cellphone number",
+      label: t("Cellphone number"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 2 },
@@ -126,7 +128,7 @@ function UserEditForm(props) {
       id: "landlinenumber",
       name: "landlinenumber",
       value: (user && user.landlinenumber) || "",
-      label: "Landline number",
+      label: t("Landline number"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 2 },
@@ -135,7 +137,7 @@ function UserEditForm(props) {
       id: "faxnumber",
       name: "faxnumber",
       value: (user && user.faxnumber) || "",
-      label: "Fax number",
+      label: t("Fax Number"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 2 },
@@ -145,7 +147,7 @@ function UserEditForm(props) {
       id: "address1text",
       name: "address1text",
       value: (user && user.address1text) || "",
-      label: "Address 1",
+      label: t("Address 1"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -155,7 +157,7 @@ function UserEditForm(props) {
       id: "address2text",
       name: "address2text",
       value: (user && user.address2text) || "",
-      label: "Address 2",
+      label: t("Address 2"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -164,7 +166,7 @@ function UserEditForm(props) {
       id: "cityname",
       name: "cityname",
       value: (user && user.cityname) || "",
-      label: "City name",
+      label: t("City"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -173,7 +175,7 @@ function UserEditForm(props) {
       id: "postalcode",
       name: "postalcode",
       value: (user && user.postalcode) || "",
-      label: "Postal code",
+      label: t("Postal code"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -182,7 +184,7 @@ function UserEditForm(props) {
       id: "statecode",
       name: "statecode",
       value: (user && user.statecode) || "",
-      label: "State code",
+      label: t("State"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -191,7 +193,7 @@ function UserEditForm(props) {
       id: "countrycode",
       name: "countrycode",
       value: (user && user.countrycode) || "",
-      label: "Country code",
+      label: t("Country"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -200,7 +202,7 @@ function UserEditForm(props) {
       id: "username",
       name: "username",
       value: (user && user.username) || "",
-      label: "Username",
+      label: t("Username"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -209,7 +211,7 @@ function UserEditForm(props) {
       id: "password",
       name: "password",
       value: (user && user.password) || "",
-      label: "Password",
+      label: t("Password"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -238,7 +240,7 @@ function UserEditForm(props) {
       id: "legalperson",
       name: "legalperson",
       value: (user && user.legalperson) || "",
-      label: "Is Legal Person",
+      label: t("Is Legal Person"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 2 },
@@ -247,7 +249,7 @@ function UserEditForm(props) {
       id: "alternateemail",
       name: "alternateemail",
       value: (user && user.alternateemail) || "",
-      label: "Alternate email",
+      label: t("Alternate email"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -256,7 +258,7 @@ function UserEditForm(props) {
       id: "website",
       name: "website",
       value: (user && user.website) || "",
-      label: "Website",
+      label: t("Website"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -272,7 +274,7 @@ function UserEditForm(props) {
       id: "useridtype",
       name: "useridtype",
       value: (user && user.useridtype) || "",
-      label: "ID type",
+      label: t("ID type"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 2 },
@@ -281,7 +283,7 @@ function UserEditForm(props) {
       id: "useridnumber",
       name: "useridnumber",
       value: (user && user.useridnumber) || "",
-      label: "ID Number",
+      label: t("ID Number"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 2 },
@@ -290,7 +292,7 @@ function UserEditForm(props) {
       id: "userdobdate",
       name: "userdobdate",
       value: (user && user.userdobdate) || "",
-      label: "DOB Date",
+      label: t("DOB Date"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 2 },
@@ -299,7 +301,7 @@ function UserEditForm(props) {
       id: "usertaxcode",
       name: "usertaxcode",
       value: (user && user.usertaxcode) || "",
-      label: "Tax Code",
+      label: t("Tax Code"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -308,7 +310,7 @@ function UserEditForm(props) {
       id: "usertaxcuitl",
       name: "usertaxcuitl",
       value: (user && user.usertaxcuitl) || "",
-      label: "Tax CUITL",
+      label: t("Tax CUITL"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -317,7 +319,7 @@ function UserEditForm(props) {
       id: "userfacebooklink",
       name: "userfacebooklink",
       value: (user && user.userfacebooklink) || "",
-      label: "Facebook Link",
+      label: t("Facebook Link"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -326,7 +328,7 @@ function UserEditForm(props) {
       id: "usertwitterlink",
       name: "usertwitterlink",
       value: (user && user.usertwitterlink) || "",
-      label: "Twitter Link",
+      label: t("Twitter Link"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -335,7 +337,7 @@ function UserEditForm(props) {
       id: "userinstagramlink",
       name: "userinstagramlink",
       value: (user && user.userinstagramlink) || "",
-      label: "Instagram Link",
+      label: t("Instagram Link"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -344,22 +346,22 @@ function UserEditForm(props) {
       id: "userpinterestlink",
       name: "userpinterestlink",
       value: (user && user.userpinterestlink) || "",
-      label: "Pinterest Link",
+      label: t("Pinterest Link"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
     },
     {
       type: "subtitle",
-      label: "User Type",
+      label: t("User Type"),
       grid: { xs: 6, sm: 3, md: 12 },
     },
     {
       type: "radiogroup",
       options: [
-        { value: "corporate", label: "Corporate" },
-        { value: "nonPrivileged", label: "Non Privileged" },
-        { value: "privileged", label: "Privileged" },
+        { value: "corporate", label: t("Corporate") },
+        { value: "nonPrivileged", label: t("Non Privileged") },
+        { value: "privileged", label: t("Privileged") },
       ],
       defaultValue: "corporate",
       id: "userType",
@@ -448,9 +450,15 @@ function UserEditForm(props) {
             //input.value = '';
           }}
         >
-          <h3>
-            {props.action.charAt(0).toUpperCase() + props.action.slice(1)} User
-          </h3>
+          <Container style={{ textAlign: "center" }}>
+            <h2>
+              {t(
+                `${
+                  props.action.charAt(0).toUpperCase() + props.action.slice(1)
+                } User`
+              )}
+            </h2>
+          </Container>
           <FormFieldsGroup
             fields={fields}
             css={textFieldCSS.root}
@@ -459,7 +467,7 @@ function UserEditForm(props) {
           />
           <Grid item xs={12} sm={6} md={12} style={styles.cmsSubmitButton}>
             <Button className={submitButtonCSS.root} onClick={handleSave}>
-              Submit
+              {t("Submit")}
             </Button>
           </Grid>
           {/*

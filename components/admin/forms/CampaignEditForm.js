@@ -5,8 +5,10 @@ import mutations from "../../../graphql/mutations";
 import computedStyles from "../../../styles/computedStyles";
 import FormFieldsGroup from "./FormFieldsGroup";
 import styles from "../../../styles/app";
+import { useTranslation } from "next-i18next";
 
 function CampaignEditForm(props) {
+  const { t } = useTranslation("admin");
   let textFieldCSS = computedStyles.textField(props);
   let submitButtonCSS = computedStyles.submitButton(props);
 
@@ -31,7 +33,7 @@ function CampaignEditForm(props) {
       id: "campaignnumber",
       name: "campaignnumber",
       value: (campaign && campaign.campaignnumber) || "",
-      label: "Campaign number",
+      label: t("Number"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -40,7 +42,7 @@ function CampaignEditForm(props) {
       id: "campaigntype",
       name: "campaigntype",
       value: (campaign && campaign.campaigntype) || "",
-      label: "Campaign Type",
+      label: t("Type"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -50,7 +52,9 @@ function CampaignEditForm(props) {
       name: "campaignBelongs",
       value: (campaign && campaign.departmentid) || "",
       label:
-        campaign && campaign.campaigntype === "1" ? "Department" : "Product",
+        campaign && campaign.campaigntype === "1"
+          ? t("Department")
+          : t("Product"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -59,7 +63,7 @@ function CampaignEditForm(props) {
       id: "campaignoccurrence",
       name: "campaignoccurrence",
       value: (campaign && campaign.campaignoccurrence) || "",
-      label: "Ocurrence",
+      label: t("Ocurrence"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -68,7 +72,7 @@ function CampaignEditForm(props) {
       id: "gridpositionindex",
       name: "gridpositionindex",
       value: (campaign && campaign.gridpositionindex) || "",
-      label: "Grid position",
+      label: t("Grid position"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -77,7 +81,7 @@ function CampaignEditForm(props) {
       id: "promotedfromdatime",
       name: "promotedfromdatime",
       value: (campaign && campaign.promotedfromdatime) || "",
-      label: "From date",
+      label: t("From Date"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -86,7 +90,7 @@ function CampaignEditForm(props) {
       id: "promotedtodatime",
       name: "promotedtodatime",
       value: (campaign && campaign.promotedtodatime) || "",
-      label: "Grid position",
+      label: t("To Date"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -105,26 +109,33 @@ function CampaignEditForm(props) {
   const [updateTodo] = useMutation(mutations.ADD_USER);
 
   return (
-    <Container component="main" maxWidth="md">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          //addTodo({ variables: { type: input.value } });
-          //input.value = '';
-        }}
-      >
-        <h3>
-          {props.action.charAt(0).toUpperCase() + props.action.slice(1)}{" "}
-          Campaign
-        </h3>
-        <FormFieldsGroup fields={fields} css={textFieldCSS.root} />
-        <Grid item xs={12} sm={6} md={12} style={styles.cmsSubmitButton}>
-          <Button className={submitButtonCSS.root} onClick={handleSave}>
-            Submit
-          </Button>
-        </Grid>
-      </form>
-    </Container>
+    <>
+      <Container style={{ textAlign: "center" }}>
+        <h2>
+          {t(
+            `${
+              props.action.charAt(0).toUpperCase() + props.action.slice(1)
+            } Campaign`
+          )}
+        </h2>
+      </Container>
+      <Container component="main" maxWidth="md">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            //addTodo({ variables: { type: input.value } });
+            //input.value = '';
+          }}
+        >
+          <FormFieldsGroup fields={fields} css={textFieldCSS.root} />
+          <Grid item xs={12} sm={6} md={12} style={styles.cmsSubmitButton}>
+            <Button className={submitButtonCSS.root} onClick={handleSave}>
+              {t("Submit")}
+            </Button>
+          </Grid>
+        </form>
+      </Container>
+    </>
   );
 }
 

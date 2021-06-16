@@ -8,10 +8,12 @@ import DataTable from "../common/DataTable";
 import UserEditForm from "./forms/UserEditForm";
 import queries from "../../graphql/queries";
 import EditForms from "../EditForms";
+import { useTranslation } from "next-i18next";
 
 import { CellParams } from "@material-ui/data-grid";
 
 function Users(props) {
+  const { t } = useTranslation("admin");
   const { loading, error, data } = useQuery(queries.GET_USERS_DATA);
   if (loading) return <p></p>;
   if (error) return <p>There is an error!</p>;
@@ -50,22 +52,22 @@ function Users(props) {
 
   const columns = [
     { field: "id", headerName: "ID", width: 50 },
-    { field: "username", headerName: "Username", width: 180 },
-    { field: "userfirstname", headerName: "Name", width: 170 },
+    { field: "username", headerName: t("Username"), width: 180 },
+    { field: "userfirstname", headerName: t("Name"), width: 170 },
     {
       field: "usertype",
-      headerName: "User type",
+      headerName: t("User Type"),
       width: 100,
     },
     {
       field: "departmentid",
-      headerName: "Dept",
+      headerName: t("Dept"),
       width: 80,
     },
-    { field: "userstatus", headerName: "Status", width: 100 },
-    { field: "createddatime", headerName: "Created", width: 120 },
-    { field: "modifdatime", headerName: "Modified", width: 120 },
-    { field: "modifbyid", headerName: "Modified by", width: 100 },
+    { field: "userstatus", headerName: t("Status"), width: 100 },
+    { field: "createddatime", headerName: t("Created"), width: 120 },
+    { field: "modifdatime", headerName: t("Modified"), width: 120 },
+    { field: "modifbyid", headerName: t("Modified by"), width: 100 },
 
     {
       field: "",
@@ -82,9 +84,9 @@ function Users(props) {
                 props.pageId == 0 ? "main" : props.pageId
               }/admin/users/edit/${params.getValue("id")}`}
             >
-              <EditButton component="a">Edit</EditButton>
+              <EditButton component="a">{t("Edit")}</EditButton>
             </Link>
-            <DeleteButton>Delete</DeleteButton>
+            <DeleteButton>{t("Delete")}</DeleteButton>
           </>
         );
       },
@@ -95,12 +97,14 @@ function Users(props) {
     <Container component="main" maxWidth="lg">
       {props.action === undefined ? (
         <>
-          <h3>Users - Creation and Maintenance</h3>
+          <Container style={{ textAlign: "center" }}>
+            <h2>{`${t("Users")} - ${t("Creation and Maintenance")}`}</h2>
+          </Container>
           <Link
             href={`/[id]/admin/[section]/[params]`}
             as={`/${props.pageId == 0 ? "main" : props.pageId}/admin/users/add`}
           >
-            <AddButton component="a">Add user</AddButton>
+            <AddButton component="a">{t("New User")}</AddButton>
           </Link>
 
           <DataTable columns={columns} rows={data.users} />

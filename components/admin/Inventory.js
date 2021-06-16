@@ -11,8 +11,10 @@ import GraphqlLoading from "../common/GraphqlLoading";
 import GraphqlError from "../common/GraphqlError";
 import queries from "../../graphql/queries";
 import computedStyles from "../../styles/computedStyles";
+import { useTranslation } from "next-i18next";
 
 function Inventory(props) {
+  const { t } = useTranslation("admin");
   let changeButtonCSS = computedStyles.changeButton(props);
   let deleteButtonCSS = computedStyles.deleteButton(props);
   let addButtonCSS = computedStyles.addButton(props);
@@ -49,16 +51,16 @@ function Inventory(props) {
 
   const columns = [
     { field: "id", headerName: "ID", width: 50 },
-    { field: "productnumber", headerName: "Number", width: 100 },
+    { field: "productnumber", headerName: t("Number"), width: 100 },
     { field: "productsku", headerName: "SKU", width: 120 },
     {
       field: "productshortname",
-      headerName: "Short Name",
+      headerName: t("Short Name"),
       width: 120,
     },
-    { field: "productdescription", headerName: "Description", width: 160 },
-    { field: "prodcategorycode", headerName: "Category", width: 120 },
-    { field: "prodsubcategorycode", headerName: "Subcategory", width: 120 },
+    { field: "productdescription", headerName: t("Description"), width: 160 },
+    { field: "prodcategorycode", headerName: t("Category"), width: 120 },
+    { field: "prodsubcategorycode", headerName: t("Subcategory"), width: 120 },
 
     /* { field: "brandcode", headerName: "Brd", width: 70 },
     { field: "modelcode", headerName: "Mod", width: 70 },
@@ -73,7 +75,7 @@ function Inventory(props) {
 
     {
       field: "",
-      headerName: "Actions",
+      headerName: t("Actions"),
       sortable: false,
       width: 200,
       disableClickEventBubbling: true,
@@ -95,11 +97,11 @@ function Inventory(props) {
                 style={{ margin: "10px" }}
                 component="a"
               >
-                Edit
+                {t("Edit")}
               </Button>
             </Link>
             <Button className={deleteButtonCSS.root} style={{ margin: "10px" }}>
-              Delete
+              {t("Delete")}
             </Button>
           </>
         );
@@ -109,17 +111,21 @@ function Inventory(props) {
 
   const replenishmentsColumns = [
     { field: "id", headerName: "ID", width: 50 },
-    { field: "repgendatime", headerName: "Date", width: 120 },
-    { field: "supplierid", headerName: "Supplier", width: 100 },
-    { field: "replenishmentordernr", headerName: "Rep. Order Num", width: 120 },
-    { field: "replineitemnr", headerName: "Invoice", width: 100 },
-    { field: "quantityordered", headerName: "Quantity", width: 100 },
-    { field: "actualunitcost", headerName: "Unit Cost", width: 100 },
-    { field: "quantityreceived", headerName: "MSRP", width: 90 },
+    { field: "repgendatime", headerName: t("Date"), width: 120 },
+    { field: "supplierid", headerName: t("Supplier"), width: 100 },
+    {
+      field: "replenishmentordernr",
+      headerName: t("Rep. Order Num"),
+      width: 120,
+    },
+    { field: "replineitemnr", headerName: t("Invoice"), width: 100 },
+    { field: "quantityordered", headerName: t("Quantity"), width: 100 },
+    { field: "actualunitcost", headerName: t("Unit Cost"), width: 100 },
+    { field: "quantityreceived", headerName: t("MSRP"), width: 90 },
     { field: "productid", headerName: "SKU", width: 90 },
     {
       field: "",
-      headerName: "Actions",
+      headerName: t("Actions"),
       sortable: false,
       width: 250,
       disableClickEventBubbling: true,
@@ -131,10 +137,10 @@ function Inventory(props) {
               style={{ margin: "10px" }}
               onClick={() => openOrderPage("edit", params.getValue("id"))}
             >
-              Edit
+              {t("Edit")}
             </Button>
             <Button className={deleteButtonCSS.root} style={{ margin: "10px" }}>
-              Delete
+              {t("Delete")}
             </Button>
           </>
         );
@@ -159,7 +165,9 @@ function Inventory(props) {
   return (
     <Container component="main" maxWidth="lg">
       <>
-        <h3>Inventory Management</h3>
+        <Container style={{ textAlign: "center" }}>
+          <h2>{t("Inventory Management")}</h2>
+        </Container>
         <Paper square>
           <Tabs
             TabIndicatorProps={{ className: activeTabCSS.indicator }}
@@ -167,8 +175,8 @@ function Inventory(props) {
             onChange={handleTabChange}
             aria-label="Inventory tabs"
           >
-            <Tab label="Product Maintenance" {...a11yProps(0)} />
-            <Tab label="Product Replenishment" {...a11yProps(1)} />
+            <Tab label={t("Product Maintenance")} {...a11yProps(0)} />
+            <Tab label={t("Product Replenishment")} {...a11yProps(1)} />
           </Tabs>
         </Paper>
         <TabPanel value={activeTab} index={0}>
@@ -183,7 +191,7 @@ function Inventory(props) {
                 }
               >
                 <Button className={addButtonCSS.root} component="a">
-                  New Product
+                  {t("New Product")}
                 </Button>
               </Link>
 
@@ -204,7 +212,7 @@ function Inventory(props) {
               className={addButtonCSS.root}
               onClick={() => openOrderPage("add", undefined)}
             >
-              New Order
+              {t("New Order")}
             </Button>
             <DataTable
               columns={replenishmentsColumns}

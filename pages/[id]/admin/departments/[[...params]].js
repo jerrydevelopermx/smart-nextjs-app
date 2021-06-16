@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { initializeApollo } from "../../../../lib/apolloClient";
 import queries from "../../../../graphql/queries";
-
+import EditForms from "../../../../components/EditForms";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 import LeftNavBar from "../../../../components/admin/LeftNavBar";
@@ -20,10 +20,13 @@ import appStyles from "../../../../styles/app.js";
 import js from "../../../../js/components.js";
 
 export async function getServerSideProps(context) {
+  console.log(context.query);
   const apolloClient = initializeApollo();
   const { data } = await apolloClient.query({
     query: queries.GET_HOME_PAGE_INFO,
-    variables: { storeId: context.query.id === "main" ? 0 : context.query.id },
+    variables: {
+      storeId: context.query.id === "main" ? 0 : context.query.id,
+    },
   });
 
   return {
@@ -37,13 +40,13 @@ export async function getServerSideProps(context) {
     },
   };
 }
-function AdminPage({ ...props }) {
+function AdminDeptPage({ ...props }) {
   //let user = JSON.parse(localStorage.getItem("user"));
   const router = useRouter();
   const { id, params } = router.query;
 
   console.log(id);
-  console.log(params);
+  console.log(router.query);
 
   return (
     <div
@@ -96,12 +99,50 @@ function AdminPage({ ...props }) {
                 pageId={props.data.page.id}
               />
             ) : (
-              <div>
-                {" "}
-                Dept ID {router.query.params[0]}
-                Section {router.query.params[1]}
-                Item ID {router.query.params[2]}
-              </div>
+              {
+                add: (
+                  <EditForms
+                    type="DEPARTMENT"
+                    action="add"
+                    styles={props.data.page.styles.header}
+                    appButtons={appStyles.buttons}
+                  />
+                ),
+                edit: (
+                  <EditForms
+                    type="DEPARTMENT"
+                    action="edit"
+                    styles={props.data.page.styles.header}
+                    appButtons={appStyles.buttons}
+                  />
+                ),
+                cms: (
+                  <ContentManager
+                    action={"edit"}
+                    styles={props.data.page.styles.header}
+                    pageId={props.data.page.id}
+                    deptId={params && params[1]}
+                    appButtons={appStyles.buttons}
+                    appStyles={appStyles}
+                  />
+                ),
+                campaigns: (
+                  <Campaigns
+                    action={params && params[0]}
+                    buttons={appStyles.buttons}
+                    styles={props.data.page.styles.header}
+                    pageId={props.data.page.id}
+                  />
+                ),
+                inventory: (
+                  <Inventory
+                    appButtons={appStyles.buttons}
+                    styles={props.data.page.styles.header}
+                    pageId={props.data.page.id}
+                    modalStyles={props.data.page.styles.modalstyles}
+                  />
+                ),
+              }[params[0]]
             )}
           </Grid>
         </Grid>
@@ -118,4 +159,4 @@ function AdminPage({ ...props }) {
   );
 }
 
-export default AdminPage;
+export default AdminDeptPage;

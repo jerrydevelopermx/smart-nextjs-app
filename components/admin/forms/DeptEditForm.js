@@ -3,8 +3,10 @@ import { Button, Grid, Container } from "@material-ui/core";
 import FormFieldsGroup from "./FormFieldsGroup";
 import computedStyles from "../../../styles/computedStyles";
 import styles from "../../../styles/app";
+import { useTranslation } from "next-i18next";
 
 function DeptEditForm(props) {
+  const { t } = useTranslation("admin");
   let textFieldCSS = computedStyles.textField(props);
   let submitButtonCSS = computedStyles.submitButton(props);
 
@@ -49,7 +51,7 @@ function DeptEditForm(props) {
       id: "departmentName",
       name: "departmentName",
       value: (department && department.departmentname) || "",
-      label: "Department Name",
+      label: t("Name"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -58,7 +60,7 @@ function DeptEditForm(props) {
       id: "deptCategoryNumber",
       name: "deptCategoryNumber",
       value: (department && department.deptcategorynumber) || "",
-      label: "Category",
+      label: t("Category"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -67,7 +69,7 @@ function DeptEditForm(props) {
       id: "contractLink",
       name: "contractLink",
       value: (department && department.contractlink) || "",
-      label: "Contract Link",
+      label: t("Contract Link"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -76,7 +78,7 @@ function DeptEditForm(props) {
       id: "placeHolderSinceDate",
       name: "placeHolderSinceDate",
       value: (department && department.placeholdersincedate) || "",
-      label: "Placeholder Since",
+      label: t("Placeholder Since"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -85,7 +87,7 @@ function DeptEditForm(props) {
       id: "placeHolderThruDate",
       name: "placeHolderThruDate",
       value: (department && department.placeholderthrudate) || "",
-      label: "Placeholder to",
+      label: t("Placeholder to"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -94,7 +96,7 @@ function DeptEditForm(props) {
       id: "placeHolderType",
       name: "placeHolderType",
       value: (department && department.placeholdertype) || "",
-      label: "Placeholder type",
+      label: t("Placeholder type"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -103,7 +105,7 @@ function DeptEditForm(props) {
       id: "placeHolderCode",
       name: "placeHolderCode",
       value: (department && department.placeholdercode) || "",
-      label: "Placeholder code",
+      label: t("Placeholder code"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 3 },
@@ -112,7 +114,7 @@ function DeptEditForm(props) {
       id: "deptLogoLink",
       name: "deptLogoLink",
       value: (department && department.deptlogolink) || "",
-      label: "Hover Logo",
+      label: t("Hover Logo"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -130,7 +132,7 @@ function DeptEditForm(props) {
       id: "gridDefaultPositionIndex",
       name: "gridDefaultPositionIndex",
       value: (department && department.griddefaultpositionindex) || "",
-      label: "Grid default position",
+      label: t("Grid default position"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -139,7 +141,7 @@ function DeptEditForm(props) {
       id: "gridPromotedPositionIndex",
       name: "gridPromotedPositionIndex",
       value: (department && department.gridpromotedpositionindex) || "",
-      label: "Grid promoted position",
+      label: t("Grid promoted position"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -148,7 +150,7 @@ function DeptEditForm(props) {
       id: "deptPriorityNumber",
       name: "deptPriorityNumber",
       value: (department && department.deptprioritynumber) || "",
-      label: "Priority number",
+      label: t("Priority number"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -157,7 +159,7 @@ function DeptEditForm(props) {
       id: "campaigning",
       name: "campaigning",
       value: (department && department.campaigning) || "",
-      label: "Is campaigning",
+      label: t("Is campaigning"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -166,7 +168,7 @@ function DeptEditForm(props) {
       id: "campaignID",
       name: "campaignID",
       value: (department && department.campaignid) || "",
-      label: "Campaign",
+      label: t("Campaign"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -223,14 +225,20 @@ function DeptEditForm(props) {
             //input.value = ''; */
           }}
         >
-          <h3>
-            {props.action.charAt(0).toUpperCase() + props.action.slice(1)}{" "}
-            Department
-          </h3>
+          <Container style={{ textAlign: "center" }}>
+            <h2>
+              {t(
+                `${
+                  props.action.charAt(0).toUpperCase() + props.action.slice(1)
+                } Department`
+              )}
+            </h2>
+          </Container>
+
           <FormFieldsGroup fields={fields} css={textFieldCSS.root} />
           <Grid item xs={12} sm={6} md={12} style={styles.cmsSubmitButton}>
             <Button className={submitButtonCSS.root} onClick={handleSave}>
-              Submit
+              {t("Submit")}
             </Button>
           </Grid>
         </form>

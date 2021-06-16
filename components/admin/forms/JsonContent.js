@@ -15,10 +15,11 @@ import mutations from "../../../graphql/mutations";
 import computedStyles from "../../../styles/computedStyles";
 import styles from "../../../styles/app";
 import components from "../../../js/components";
+import { useTranslation } from "next-i18next";
 
 function JsonContent(props) {
   let submitButtonCSS = computedStyles.submitButton(props);
-
+  const { t } = useTranslation(["admin", "header", "footer"]);
   const [getHTMLContent, { data }] = useLazyQuery(
     queries.GET_HTML_CONTENT_BY_ID_SECTION
   );
@@ -66,11 +67,10 @@ function JsonContent(props) {
         <Grid item xs={6} sm={3} md={6}>
           <FormControl variant="outlined">
             <InputLabel htmlFor="outlined-age-native-simple">
-              Section
+              {t("Section")}
             </InputLabel>
             <Select
               native
-              label="Blog"
               inputProps={{
                 name: "blog",
                 id: "outlined-age-native-simple",
@@ -79,18 +79,28 @@ function JsonContent(props) {
               onChange={handleChange}
             >
               <option aria-label="None" value="" />
-              <option value={"blog"}>Blog</option>
-              <option value={"contactUs"}>Contact Us</option>
-              <option value={"ourMission"}>Our Mission</option>
-              <option value={"whoWeAre"}>Who we are</option>
-              <option value={"board"}>Board & Staff</option>
-              <option value={"features"}>Site's Features</option>
-              <option value={"membership"}>Site's Membership</option>
-              <option value={"history"}>History</option>
-              <option value={"sitePolicies"}>Site Policies</option>
-              <option value={"membershipPolicies"}>Membership Policies</option>
-              <option value={"customersPolicies"}>Customers Policies</option>
-              <option value={"visitorsPolicies"}>Visitors Policies</option>
+              <option value={"blog"}> {t("header:Blog")}</option>
+              <option value={"contactUs"}>{t("header:Contact Us")}</option>
+              <option value={"ourMission"}>{t("header:Our Mission")}</option>
+              <option value={"whoWeAre"}>{t("header:Who We Are")}</option>
+              <option value={"board"}>{t("header:Our Board & Staff")}</option>
+              <option value={"features"}>{t("header:Sites Features")}</option>
+              <option value={"membership"}>
+                {t("header:Sites Membership")}
+              </option>
+              <option value={"history"}>{t("footer:History")}</option>
+              <option value={"sitePolicies"}>
+                {t("footer:Site Policies")}
+              </option>
+              <option value={"membershipPolicies"}>
+                {t("footer:Membership Policies")}
+              </option>
+              <option value={"customersPolicies"}>
+                {t("footer:Customers Policies")}
+              </option>
+              <option value={"visitorsPolicies"}>
+                {t("footer:Visitors Policies")}
+              </option>
             </Select>
           </FormControl>
           <Editor
@@ -118,7 +128,7 @@ function JsonContent(props) {
       <Grid container spacing={1}>
         <Grid item xs={12} sm={6} md={12} style={styles.cmsSubmitButton}>
           <Button className={submitButtonCSS.root} onClick={saveContent}>
-            Submit
+            {t("Submit")}
           </Button>
         </Grid>
       </Grid>

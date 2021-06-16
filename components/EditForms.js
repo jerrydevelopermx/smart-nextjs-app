@@ -21,15 +21,14 @@ function EditForms(props) {
   console.log(
     "id:" + id,
     "section:" + section,
-    "action:" + params[0]
-    //"deptId:" + params[1],
+    "action:" + params[0],
+    "deptId:" + params[1]
     // "resourceId:" + params[2
   );
-  console.log("props");
-  console.log(props);
+
   let vars = {
     DEPARTMENT: {
-      deptId: departmentId,
+      deptId: resourceId,
     },
     CAMPAIGN: {
       campaignId: resourceId,
@@ -45,7 +44,7 @@ function EditForms(props) {
       userId: resourceId,
     },
   };
-  console.log(props.id, props.action);
+
   const { loading, error, data } = useQuery(
     queries[`GET_${props.type}_DATA_BY_ID`],
     {

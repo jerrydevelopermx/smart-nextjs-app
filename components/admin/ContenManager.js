@@ -28,7 +28,7 @@ function ContentManager(props) {
   const { t } = useTranslation("admin");
   const { loading, error, data } = useQuery(queries.GET_CMS_BY_ID, {
     variables: {
-      siteId: props.pageId,
+      siteId: props.deptId ? props.deptId : props.pageId,
     },
   });
   const useStyles = makeStyles((theme) => ({
@@ -116,7 +116,9 @@ function ContentManager(props) {
   if (error) return <p>There is an error!</p>;
   return (
     <Container component="main" maxWidth="lg">
-      <h2>{t("Content Manager System")}</h2>
+      <Container style={{ textAlign: "center" }}>
+        <h2>{t("Content Manager System")}</h2>
+      </Container>
       <Paper square>
         <Tabs
           TabIndicatorProps={{ className: classes.indicator }}

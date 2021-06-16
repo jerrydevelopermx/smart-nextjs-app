@@ -15,9 +15,10 @@ import components from "../../../js/components";
 import mutations from "../../../graphql/mutations";
 import ColorPicker from "../../common/ColorPicker";
 import computedStyles from "../../../styles/computedStyles";
+import { useTranslation } from "next-i18next";
 
 function AppearanceForm(props) {
-  console.log(props.data.sitelogolink);
+  const { t } = useTranslation(["admin"]);
   const [updateAppearance] = useMutation(mutations.UPDATE_SITE_APPEARANCE);
 
   const [appearance, setAppearance] = useState({
@@ -143,7 +144,7 @@ function AppearanceForm(props) {
               required
               fullWidth
               id="email"
-              label="Logo URL"
+              label={t("Logo URL")}
               name="logUrl"
               defaultValue={props.data.sitelogolink}
             />
@@ -159,7 +160,7 @@ function AppearanceForm(props) {
             sm={3}
             md={1}
           >
-            <Button className={changeButtonCSS.root}>Change</Button>
+            <Button className={changeButtonCSS.root}>{t("Change")}</Button>
           </Grid>
         </Grid>
         <Grid container spacing={1}>
@@ -171,7 +172,7 @@ function AppearanceForm(props) {
               required
               fullWidth
               name="bodyColor"
-              label="Body Color"
+              label={t("Body Color")}
               id="bodyColor"
               defaultValue={appearance.siteBodyColorRGB}
             />
@@ -202,7 +203,7 @@ function AppearanceForm(props) {
               required
               fullWidth
               name="bodyTextColor"
-              label="Body Font Color"
+              label={t("Body Font Color")}
               id="bodyTextColor"
               defaultValue={appearance.siteBodyFontColorText}
             />
@@ -236,7 +237,9 @@ function AppearanceForm(props) {
             md={4}
           >
             <FormControl variant="outlined">
-              <InputLabel htmlFor="outlined-age-native-simple">Font</InputLabel>
+              <InputLabel htmlFor="outlined-age-native-simple">
+                {t("Font")}
+              </InputLabel>
               <Select
                 native
                 label="Age"
@@ -264,7 +267,7 @@ function AppearanceForm(props) {
               required
               fullWidth
               name="mainComponentsColors"
-              label="Main Components Color"
+              label={t("Main Components Color")}
               id="mainComponentsColor"
               defaultValue={appearance.siteMainColorRGB}
             />
@@ -295,7 +298,7 @@ function AppearanceForm(props) {
               required
               fullWidth
               name="mainComponentsTextColor"
-              label="Main Components Font Color"
+              label={t("Main Components Font Color")}
               id="mainComponentsTextColor"
               defaultValue={appearance.siteMainFontColorText}
             />
@@ -326,7 +329,7 @@ function AppearanceForm(props) {
             style={{ padding: "30px", textAlign: "center" }}
           >
             <Button className={submitButtonCSS.root} onClick={handleSave}>
-              Submit
+              {t("Submit")}
             </Button>
           </Grid>
         </Grid>

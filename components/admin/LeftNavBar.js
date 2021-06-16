@@ -334,7 +334,7 @@ function LeftNavBar(props) {
               </ListItemIcon>
               <ListItemText
                 className={classes.listItem}
-                primary={t("Activity tracker")}
+                primary={t("Activity Tracker")}
               />
             </ListItem>
           </Link>
