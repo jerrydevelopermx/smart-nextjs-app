@@ -31,7 +31,7 @@ function Inventory(props) {
     queries.GET_INVENTORY_DATA_BY_DEPT,
     {
       variables: {
-        departmentID: props.pageId,
+        departmentID: props.deptId ? props.deptId : props.pageId,
       },
     }
   );

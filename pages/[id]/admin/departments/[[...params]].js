@@ -128,7 +128,7 @@ function AdminDeptPage({ ...props }) {
                 ),
                 campaigns: (
                   <Campaigns
-                    action={params && params[0]}
+                    deptId={params && params[1]}
                     buttons={appStyles.buttons}
                     styles={props.data.page.styles.header}
                     pageId={props.data.page.id}
@@ -136,6 +136,7 @@ function AdminDeptPage({ ...props }) {
                 ),
                 inventory: (
                   <Inventory
+                    deptId={params && params[1]}
                     appButtons={appStyles.buttons}
                     styles={props.data.page.styles.header}
                     pageId={props.data.page.id}

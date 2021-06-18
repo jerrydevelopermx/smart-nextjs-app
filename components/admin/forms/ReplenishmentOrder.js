@@ -5,9 +5,10 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import EditForms from "../../EditForms";
+import { useTranslation } from "next-i18next";
 
 function ReplenishmentOrder(props) {
-  console.log(props);
+  const { t } = useTranslation("admin");
   return (
     <Dialog
       fullWidth={true}
@@ -19,7 +20,7 @@ function ReplenishmentOrder(props) {
         style={props.styles.mobilenavbar.paper}
         id="max-width-dialog-title"
       >
-        Replenishment Order
+        {t("Replenishment Order")}
         <IconButton
           aria-label="close"
           style={{

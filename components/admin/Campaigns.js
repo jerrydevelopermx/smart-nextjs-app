@@ -12,12 +12,13 @@ import EditForms from "../EditForms";
 import { useTranslation } from "next-i18next";
 
 function Campaigns(props) {
+  console.log(props);
   const { t } = useTranslation("admin");
   const { loading, error, data } = useQuery(
     queries.GET_CAMPAIGNS_DATA_BY_DEPT,
     {
       variables: {
-        departmentID: props.pageId,
+        departmentID: props.deptId ? props.deptId : props.pageId,
       },
     }
   );

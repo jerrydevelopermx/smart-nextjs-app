@@ -3,8 +3,10 @@ import { Grid, Button } from "@material-ui/core/";
 import FormFieldsGroup from "./FormFieldsGroup";
 import computedStyles from "../../../styles/computedStyles";
 import styles from "../../../styles/app";
+import { useTranslation } from "next-i18next";
 
 function ReplenishmentForm(props) {
+  const { t } = useTranslation("admin");
   let textFieldCSS = computedStyles.textField(props);
   let submitButtonCSS = computedStyles.submitButton(props);
   const [replenishmentOrder, setReplenishmentOrder] = useState({
@@ -25,7 +27,7 @@ function ReplenishmentForm(props) {
       name: "replenishmentordernr",
       value:
         (replenishmentOrder && replenishmentOrder.replenishmentordernr) || "",
-      label: "Order",
+      label: t("Order"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -34,7 +36,7 @@ function ReplenishmentForm(props) {
       id: "productid",
       name: "productid",
       value: (replenishmentOrder && replenishmentOrder.productid) || "",
-      label: "Product Number",
+      label: t("Product Number"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -43,7 +45,7 @@ function ReplenishmentForm(props) {
       id: "supplierid",
       name: "supplierid",
       value: (replenishmentOrder && replenishmentOrder.supplierid) || "",
-      label: "Supplier #",
+      label: t("Supplier") + " #",
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 4 },
@@ -52,7 +54,7 @@ function ReplenishmentForm(props) {
       id: "repgendatime",
       name: "repgendatime",
       value: (replenishmentOrder && replenishmentOrder.repgendatime) || "",
-      label: "Date",
+      label: t("Date"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -61,7 +63,7 @@ function ReplenishmentForm(props) {
       id: "quantityordered",
       name: "quantityordered",
       value: (replenishmentOrder && replenishmentOrder.quantityordered) || "",
-      label: "Quantity",
+      label: t("Quantity"),
       required: false,
       onChange: handleChange,
       grid: { xs: 6, sm: 3, md: 6 },
@@ -78,7 +80,7 @@ function ReplenishmentForm(props) {
       <FormFieldsGroup fields={fields} css={textFieldCSS.root} />
       <Grid item xs={12} sm={6} md={12} style={styles.cmsSubmitButton}>
         <Button className={submitButtonCSS.root} onClick={handleSave}>
-          Submit
+          {t("Submit")}
         </Button>
       </Grid>
     </>

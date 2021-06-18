@@ -138,7 +138,7 @@ function Departments(props) {
               href={`/[id]/admin/departments/[params]`}
               as={`/${
                 props.pageId == 0 ? "main" : props.pageId
-              }/admin/departments/inventory/${params.getValue("id")}`}
+              }/admin/departments/inventory/${params.getValue("departmentid")}`}
             >
               <InventoryButton component="a">{t("Inventory")}</InventoryButton>
             </Link>
